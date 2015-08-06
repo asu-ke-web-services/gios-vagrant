@@ -72,9 +72,9 @@ Vagrant Box creation scripts
 
 2. To create the box you can run below command.
 
-  * `packer build template.json`
+  * `sudo packer build template.json`
   * If you are using linux create_box.sh script
 
-  `Example: bash create_box.sh`
+  `Example: sudo bash create_box.sh`
 
  Note: Optionally you can push the box to [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
