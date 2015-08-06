@@ -1,10 +1,7 @@
 # gios-vagrant
 Vagrant Box creation scripts
 
-#Get Started
-============
 #How to use gios vagrant box:
-============================
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html) on your machine if not installed before.
 
 2. Run below command in the directory you want to setup.
@@ -40,7 +37,7 @@ Vagrant Box creation scripts
           HTTPS: 44300 → Forwards To 443
           MySQL: 33060 → Forwards To 3306
    Directories: "./" Maps To "/vagrant"
-
+   ```
 8. To start the vagrant machine use below command.
   `vagrant up`
 
@@ -58,7 +55,7 @@ Vagrant Box creation scripts
 12. Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
 #How to create gios vagrant box:
-===================
+
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html). and [Packer](https://www.packer.io/) on your machine if not installed before.
 
   * If you are using ubuntu you can use install_vb_vagrant.sh which installs above 3 packages for you.
