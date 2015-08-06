@@ -5,6 +5,10 @@ Vagrant Box creation scripts
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html) on your machine if not installed before.
 
+   * If you are using ubuntu you can use install_vb_vagrant.sh which installs above 3 packages for you.
+
+  `Example: sudo bash install_vb_vagrant.sh`
+
 2. Run below command in the directory you want to setup.
 
   `vagrant int chasethenag420/gios`
@@ -33,7 +37,8 @@ Vagrant Box creation scripts
     config.vm.network "forwarded_port", guest: 9000, host: 9100
 
   end
-
+```
+```
   Note: Default settings
    Ports: SSH: 2222 → Forwards To 22
           HTTP: 8000 → Forwards To 80
