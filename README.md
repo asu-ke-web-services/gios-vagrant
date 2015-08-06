@@ -2,11 +2,10 @@
 Vagrant Box creation scripts
 
 #How to use gios vagrant box:
+
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html) on your machine if not installed before.
 
 2. Run below command in the directory you want to setup.
-
-//TODO create gios-asu on atlas and host there. For testing added to personal repo
 
   `vagrant int chasethenag420/gios`
 
@@ -14,7 +13,7 @@ Vagrant Box creation scripts
 
   `vagrant up`
 
-4. By default this box comes with Apache2, php5, MySql-5.5, Wordpress, phpmyadmin, nodejs, grunt, composer, sass.
+4. By default this box comes with `Apache2, php5, MySql-5.5, Wordpress, phpmyadmin, nodejs, grunt, composer, sass`.
 
 5. Wait until the above command completes. Above command generate gios.box file into present working directory.
 
@@ -48,9 +47,11 @@ Vagrant Box creation scripts
 
 9. Check application by using below urls:
 
-   `For Apache: localhost:8000`
-   `For Wordpress: localhost:8000/wordpress`
-   `For phpmyadmin: localhost:8000/phpmyadmin`
+   ```
+   For Apache: localhost:8000
+   For Wordpress: localhost:8000/wordpress
+   For phpmyadmin: localhost:8000/phpmyadmin
+   ```
 
 10. To add more packages to vagrant machine you can update provising script (scripts/dep.sh) with other dependencies and run below command.
 
@@ -78,3 +79,5 @@ Vagrant Box creation scripts
   `Example: sudo bash create_box.sh`
 
  Note: Optionally you can push the box to [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
+
+//TODO create gios-asu on atlas and host there. For testing added to personal repo
