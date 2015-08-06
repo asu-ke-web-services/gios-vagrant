@@ -130,6 +130,7 @@ perl -i -pe'
 ' wp-config.php
 mkdir wp-content/uploads
 chmod 775 wp-content/uploads
+chown -R www-data:www-data /var/www
 rmdir wordpress
 rm latest.tar.gz
 echo "Installation is complete."

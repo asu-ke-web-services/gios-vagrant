@@ -1,9 +1,4 @@
 {
-
-  "variables": {
-    "atlas_username": "{{env `ATLAS_USERNAME`}}",
-    "atlas_name": "{{env `ATLAS_NAME`}}"
-  },
   "provisioners": [{
     "type": "shell",
     "scripts": [
@@ -57,16 +52,8 @@
         "virtualbox": {
           "output": "gios.box"
         }
-      }
-    }, {
-      "type": "atlas",
-      "only": ["virtualbox-iso"],
-      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "virtualbox",
-        "version": "0.0.1"
-      }
+      },
+      "vagrantfile_template": "default_vagrant_config"
     }]
   ]
 }

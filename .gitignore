@@ -1,5 +1,4 @@
 vagrant_1.7.4_x86_64.deb
-http/*
 packer_cache/*
 Vagrantfile
 gios.box

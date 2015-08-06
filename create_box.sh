@@ -16,7 +16,5 @@ if [ "$override_box" == y ]; then
   packer build -force template.json
 fi
 cd "$SETUP_DIR"
-vagrant destroy
-vagrant box remove gios
-vagrant box add gios gios.box
+vagrant init gios gios.box
 vagrant up
