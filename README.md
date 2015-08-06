@@ -11,7 +11,7 @@ Vagrant Box creation scripts
 
 2. Run below command in the directory you want to setup.
 
-  `vagrant int chasethenag420/gios`
+  `vagrant init chasethenag420/gios`
 
 3. To start the vagrant
 
@@ -76,7 +76,10 @@ Vagrant Box creation scripts
 
   `Example: sudo bash install_vb_vagrant.sh`
 
-2. To create the box you can run below command.
+2. Update the scripts/dep.sh file to add more packages as part of provision
+  `Example: apt-get -y install php`
+
+3. To create the box you can run below command.
 
   * `sudo packer build template.json`
   * If you are using linux create_box.sh script
@@ -84,5 +87,7 @@ Vagrant Box creation scripts
   `Example: sudo bash create_box.sh`
 
  Note: Optionally you can push the box to [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
+
+4. Upload this box to altas under gios-asu account.
 
 //TODO create gios-asu on atlas and host there. For testing added to personal repo
