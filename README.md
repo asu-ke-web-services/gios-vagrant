@@ -82,12 +82,11 @@ Vagrant Box creation scripts
 3. To create the box you can run below command.
 
   * `sudo packer build template.json`
-  * If you are using linux create_box.sh script
 
-  `Example: sudo bash create_box.sh`
+  Note: Above command may fail if artifacts are already present you can force to create by using `-force` option
 
- Note: Optionally you can push the box to [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
+4. gios.box will the created in current directory.
 
-4. Upload this box to altas under gios-asu account.
+Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
 
 //TODO create gios-asu on atlas and host there. For testing added to personal repo
