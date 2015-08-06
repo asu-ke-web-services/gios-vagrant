@@ -66,4 +66,4 @@ Vagrant Box creation scripts
   * If you are using linux create_box.sh script
   `Example: bash create_box.sh`
 
- `Note: Optionally you can push the box to [Altas](https://atlas.hashicorp.com) so it can be distributed easily.`
+ Note: Optionally you can push the box to [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
