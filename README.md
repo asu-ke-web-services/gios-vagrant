@@ -72,7 +72,8 @@ Vagrant Box creation scripts
 12. Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
 13. Default Values:
-    ```
+
+  ```
     mysqluser="root"
     mysqlpass="root"
     mysqlhost="localhost"
@@ -80,9 +81,10 @@ Vagrant Box creation scripts
     dbuser="root"
     dbpass="root"
     dbtable="wp_"
-    ```
 
-Note: Optionally refer scripts/dep.sh to update wordpress nonce
+  ```
+
+  Note: Optionally refer scripts/dep.sh to update wordpress nonce
 
 14. Login using ssh to vagrant machine using below command to work with `grunt` tasks after you sync up project directory with vagrant machine
 
