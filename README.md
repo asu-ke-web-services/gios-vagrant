@@ -95,9 +95,9 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 
   `sudo packer build template.json`
 
-  Note: Above command may fail if artifacts are already present you can force to create by using `-force` option
+  Note: Above command may fail if artifacts are already present. You can force to create by using `-force` option
 
-4. gios.box will the created in current directory.
+4. gios.box will be created in current directory.
 
 5. Remove any existing box installed with name `gios` using
 
