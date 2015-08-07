@@ -26,6 +26,7 @@ Vagrant Box creation scripts
   `vagrant init gios gios.box`
 
 7. Update Vagarantfile with the required configuration be used.
+
   ```
   Example:
   Below configuration redirects 9100 port on host to 9000 on guest(vagrant).
@@ -37,15 +38,17 @@ Vagrant Box creation scripts
     config.vm.network "forwarded_port", guest: 9000, host: 9100
 
   end
-```
-```
+
+  ```
+  ```
   Note: Default settings
    Ports: SSH: 2222 → Forwards To 22
           HTTP: 8000 → Forwards To 80
           HTTPS: 44300 → Forwards To 443
           MySQL: 33060 → Forwards To 3306
    Directories: "./" Maps To "/vagrant"
-   ```
+
+  ```
 8. To start the vagrant machine use below command.
 
   `vagrant up`
