@@ -5,15 +5,21 @@ Vagrant Box creation scripts
 
 By default this box comes with:
 
-* Apache2
-* php5
+* Ubuntu 14.04
+* Apache 2.4
+* php5 ( Extensions: php5-cli, php5-common, php5-dev, php5-curl, php5-gd, php5-jsonphp5-imagick, php5-imap, php5-intl, php5-mcrypt, php5-memcache, php5-ming, php5-mysql, php5-ps, php5-pspell, php5-recode, php5-readline, php5-sqlite, php5-tidy, php5-xdebug, php5-xmlrpc, php5-xsl, php-pear )
 * MySQL-5.5
 * Wordpress - 4.2.4
-* phpmyadmin
+* phpmyadmin - 4.0.1
 * nodejs
 * grunt
 * composer
 * sass
+* subversion
+* git
+* curl
+* vim
+* phpunit
 
 The box contains MySQL, which has the following usernames, passwords, and databases by default:
 
@@ -24,6 +30,10 @@ The box contains MySQL, which has the following usernames, passwords, and databa
 * dbuser="root"
 * dbpass="root"
 * dbtable="wp_"
+
+The box contains phpmyadmin, which has the following username and password by default:
+   * username="root"
+   * password="root"
 
 ## Setup Instructions
 
