@@ -30,6 +30,7 @@ The box contains MySQL, which has the following usernames, passwords, and databa
 1. This vagrant box requires:
     * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
     * [Vagrant](http://www.vagrantup.com/downloads.html)
+   
   You can install these using `sudo bash install_vb_vagrant.sh` if you are on Linux.
 
 2. Run the following command in the directory that you want to install this Vagrant Box in:
