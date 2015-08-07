@@ -30,13 +30,13 @@ The box contains MySQL, which has the following usernames, passwords, and databa
 1. This vagrant box requires:
     * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
     * [Vagrant](http://www.vagrantup.com/downloads.html)
-   
+
   You can install these using `sudo bash install_vb_vagrant.sh` if you are on Linux.
 
 2. Run the following command in the directory that you want to install this Vagrant Box in:
 
   `vagrant init chasethenag420/gios`
-  
+
   Or, if you are cloning this repo, you can use `vagrant init gios gios.box`. See [Building A Box](#building-a-box) for more details.
 
 3. To start the vagrant, run `vagrant up`
@@ -68,7 +68,11 @@ After you make changes to your `Vagrantfile` you will need to run `vagrant reloa
 
 ## Working with the Box
 
-You can ssh directly into the box by using `vagrant ssh`.
+* You can ssh directly into the box by using `vagrant ssh`.
+* You can save the working state of vagrant using `vagrant suspend`
+and can resume it later using `vagrant resume`.
+* Check vagrant status using `vagrant status` for current vagrant machine or using `vagrant global-status` to get information about all the vagrants in the host machine.
+* To completely destroy vagrant use `vagrant destroy`.
 
 Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
@@ -76,10 +80,10 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 # Building A Box
 
 1. In order to build the box, you will require:
-  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-  - [Vagrant](http://www.vagrantup.com/downloads.html)
-  - [Packer](https://www.packer.io/)
-  
+  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v~4.3
+  - [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
+  - [Packer](https://www.packer.io/) - v~0.8
+
   Or run the following if you are on Linux:
 
   `sudo bash install_vb_vagrant.sh`
@@ -95,4 +99,18 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 
 4. gios.box will the created in current directory.
 
+5. Remove any existing box installed with name `gios` using
+
+    `vagrant box remove gios`
+
+6. To use box in the local file system or from url you below command.
+
+    `vagrant box <name> <path>`
+
+    ```
+    Examples:
+     vagrant box gios http://yousever.com/giox.box
+     vagrant box gios /path/to/gios.box
+
+    ```
 Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
