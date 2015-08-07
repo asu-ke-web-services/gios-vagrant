@@ -104,12 +104,10 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
     `vagrant box remove gios`
 
 6. Intialize the box by using `vagrant init <name> <path>`
-
-   ```
    Examples:
-      vagrant init gios http://yoursever.com/giox.box
-      vagrant init gios /path/to/gios.box
-   ```
+     * vagrant init gios http://yoursever.com/giox.box
+     * vagrant init gios /path/to/gios.box
+   
 7. Start box using `vagrant up`
 
 Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
