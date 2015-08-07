@@ -109,7 +109,6 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
    Examples:
       vagrant init gios http://yoursever.com/giox.box
       vagrant init gios /path/to/gios.box
-
    ```
 7. Start box using `vagrant up`
 
