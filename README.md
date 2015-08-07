@@ -1,116 +1,97 @@
 # gios-vagrant
 Vagrant Box creation scripts
 
-#How to use gios vagrant box:
+# Usage
 
-1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html) on your machine if not installed before.
+By default this box comes with:
 
-   * If you are using ubuntu you can use install_vb_vagrant.sh which installs above 3 packages for you.
+* Apache2
+* php5
+* MySQL-5.5
+* Wordpress - 4.2.4
+* phpmyadmin
+* nodejs
+* grunt
+* composer
+* sass
 
-  `Example: sudo bash install_vb_vagrant.sh`
+The box contains MySQL, which has the following usernames, passwords, and databases by default:
 
-2. Run below command in the directory you want to setup.
+* mysqluser="root"
+* mysqlpass="root"
+* mysqlhost="localhost"
+* dbname="wordpress"
+* dbuser="root"
+* dbpass="root"
+* dbtable="wp_"
+
+## Setup Instructions
+
+1. This vagrant box requires:
+    * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
+    * [Vagrant](http://www.vagrantup.com/downloads.html)
+  You can install these using `sudo bash install_vb_vagrant.sh` if you are on Linux.
+
+2. Run the following command in the directory that you want to install this Vagrant Box in:
 
   `vagrant init chasethenag420/gios`
+  
+  Or, if you are cloning this repo, you can use `vagrant init gios gios.box`. See [Building A Box](#building-a-box) for more details.
 
-3. To start the vagrant
+3. To start the vagrant, run `vagrant up`
 
-  `vagrant up`
+Once set up, the box will have the following ports forwarded by default:
 
-4. By default this box comes with `Apache2, php5, MySql-5.5, Wordpress, phpmyadmin, nodejs, grunt, composer, sass`.
+* 8000 => 80
+* 2222 => 22
+* 44300 => 443
+* 33060 => 3306
 
-5. Wait until the above command completes. Above command generate gios.box file into present working directory.
+It will also have the following paths mapped:
 
-6. Run below command to create a sample `Vagrantfile` in present working directory.
+* `./` => `/vagrant`
 
-  `vagrant init gios gios.box`
+It will have the following urls set up as well:
 
-7. Update Vagarantfile with the required configuration be used.
+* localhost:8000
+* localhost:8000/wordpress
+* localhost:8000/phpmyadmin
 
-  ```
-  Example:
-  Below configuration redirects 9100 port on host to 9000 on guest(vagrant).
-  Synchronizes the /app on host with /var/www/html on guest.
-  Vagrant.configure(2) do |config|
-    config.vm.box = "gios"
-    config.vm.box_url = "gios.box"
-    config.vm.synced_folder "/app", "/var/www/html"
-    config.vm.network "forwarded_port", guest: 9000, host: 9100
+## Changing the Settings
 
-  end
+You can change the settings for the box by updating the `Vagrantfile` located in the installation directory you chose in step 2 of the following section. You can override the default configuration by editting the `Vagrantfile`. For example, if you want to map `../gios2-api` to `/var/www/html/gios2-api` you would add the following line to your `Vagrantfile`:
 
-  ```
-  ```
-  Note: Default settings
-   Ports: SSH: 2222 → Forwards To 22
-          HTTP: 8000 → Forwards To 80
-          HTTPS: 44300 → Forwards To 443
-          MySQL: 33060 → Forwards To 3306
-   Directories: "./" Maps To "/vagrant"
+`config.vm.synced_folder "../gios2-api", "/var/www/html/gios2-api"`
 
-  ```
-8. To start the vagrant machine use below command.
+After you make changes to your `Vagrantfile` you will need to run `vagrant reload`.
 
-  `vagrant up`
+## Working with the Box
 
-9. Check application by using below urls:
+You can ssh directly into the box by using `vagrant ssh`.
 
-   ```
-   For Apache: localhost:8000
-   For Wordpress: localhost:8000/wordpress
-   For phpmyadmin: localhost:8000/phpmyadmin
-   ```
+Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
-10. To add more packages to vagrant machine you can update provising script (scripts/dep.sh) with other dependencies and run below command.
 
- `vagrant provision`
+# Building A Box
 
-11. To working directly on vagrant machine use.
+1. In order to build the box, you will require:
+  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+  - [Vagrant](http://www.vagrantup.com/downloads.html)
+  - [Packer](https://www.packer.io/)
+  
+  Or run the following if you are on Linux:
 
-  `vagrant ssh`
+  `sudo bash install_vb_vagrant.sh`
 
-12. Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
-13. Default Values:
-
-  ```
-    mysqluser="root"
-    mysqlpass="root"
-    mysqlhost="localhost"
-    dbname="wordpress"
-    dbuser="root"
-    dbpass="root"
-    dbtable="wp_"
-
-  ```
-
-  Note: Optionally refer scripts/dep.sh to update wordpress nonce
-
-14. Login using ssh to vagrant machine using below command to work with `grunt` tasks after you sync up project directory with vagrant machine
-
-  `vagrant ssh`
-
-15. Use command `vagrant reload` to refresh the changes if you updated Vagrantfile.
-
-#How to create gios vagrant box:
-
-1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html). and [Packer](https://www.packer.io/) on your machine if not installed before.
-
-  * If you are using ubuntu you can use install_vb_vagrant.sh which installs above 3 packages for you.
-
-  `Example: sudo bash install_vb_vagrant.sh`
-
-2. Update the scripts/dep.sh file to add more packages as part of provision
-  `Example: apt-get -y install php`
+2. Update the scripts/dep.sh file to add more packages as part of provision.
 
 3. To create the box you can run below command.
 
-  * `sudo packer build template.json`
+  `sudo packer build template.json`
 
   Note: Above command may fail if artifacts are already present you can force to create by using `-force` option
 
 4. gios.box will the created in current directory.
 
 Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
-
-//TODO create gios-asu on atlas and host there. For testing added to personal repo
