@@ -104,6 +104,7 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
     `vagrant box remove gios`
 
 6. Intialize the box by using `vagrant init <name> <path>`
+   
    Examples:
      * vagrant init gios http://yoursever.com/giox.box
      * vagrant init gios /path/to/gios.box
