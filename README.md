@@ -68,6 +68,25 @@ Vagrant Box creation scripts
 
 12. Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
+13. Default Values:
+    ```
+    mysqluser="root"
+    mysqlpass="root"
+    mysqlhost="localhost"
+    dbname="wordpress"
+    dbuser="root"
+    dbpass="root"
+    dbtable="wp_"
+    ```
+
+Note: Optionally refer scripts/dep.sh to update wordpress nonce
+
+14. Login using ssh to vagrant machine using below command to work with `grunt` tasks after you sync up project directory with vagrant machine
+
+  `vagrant ssh`
+
+15. Use command `vagrant reload` to refresh the changes if you updated Vagrantfile.
+
 #How to create gios vagrant box:
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html). and [Packer](https://www.packer.io/) on your machine if not installed before.
