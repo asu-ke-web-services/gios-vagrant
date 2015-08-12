@@ -39,17 +39,19 @@ The box contains phpmyadmin, which has the following username and password by de
 
 1. This vagrant box requires:
     * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
-    * [Vagrant](http://www.vagrantup.com/downloads.html)
+    * [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
 
-  You can install these using `sudo bash install_vb_vagrant.sh` if you are on Linux.
+  You can install these using `sudo bash install_vb_vagrant.sh` if you are on Ubuntu.
 
-2. Run the following command in the directory that you want to install this Vagrant Box in:
+2. Change your working directory to one you want to keep your Vagrantfile and sync them with guest machine.
 
-  `vagrant init chasethenag420/gios`
+3. Run the following command in the directory that you want to install this Vagrant Box in:
 
-  Or, if you are cloning this repo, you can use `vagrant init gios gios.box`. See [Building A Box](#building-a-box) for more details.
+  `vagrant init gios chasethenag420/gios`
 
-3. To start the vagrant, run `vagrant up`
+  Or, if you are cloning this repo and building the `gios.box`, you can use `vagrant init gios gios.box`. See [Building A Box](#building-a-box) for more details.
+
+4. To start the vagrant, run `vagrant up`
 
 Once set up, the box will have the following ports forwarded by default:
 
@@ -70,7 +72,7 @@ It will have the following urls set up as well:
 
 ## Changing the Settings
 
-You can change the settings for the box by updating the `Vagrantfile` located in the installation directory you chose in step 2 of the following section. You can override the default configuration by editting the `Vagrantfile`. For example, if you want to map `../gios2-api` to `/var/www/html/gios2-api` you would add the following line to your `Vagrantfile`:
+You can change the settings for the box by updating the `Vagrantfile` located in the working directory you chose in step 2 of the above section. You can add new configuration or override the default configuration by editting the `Vagrantfile`. For example, if you want to map `../gios2-api` to `/var/www/html/gios2-api` you would add the following line to your `Vagrantfile`:
 
 `config.vm.synced_folder "../gios2-api", "/var/www/html/gios2-api"`
 
@@ -83,6 +85,7 @@ After you make changes to your `Vagrantfile` you will need to run `vagrant reloa
 and can resume it later using `vagrant resume`.
 * Check vagrant status using `vagrant status` for current vagrant machine or using `vagrant global-status` to get information about all the vagrants in the host machine.
 * To completely destroy vagrant use `vagrant destroy`.
+* To remove box completely use `vagrant box remove gios` so that next time when you do `vagrant init gios <path>` it forces to install a fresh box.
 
 Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
@@ -107,18 +110,20 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 
   Note: Above command may fail if artifacts are already present. You can force to create by using `-force` option
 
-4. gios.box will be created in current directory.
+4. `gios.box` will be created in current directory.
 
-5. Remove any existing box installed with name `gios` using
+5. Destroy any previously running box from directory you choose above using `vagrant destroy`.
+
+6. Remove any existing box installed with name `gios` using
 
     `vagrant box remove gios`
 
-6. Intialize the box by using `vagrant init <name> <path>`
+7. Change to directory you want to keep vagrant files and Intialize the box by using `vagrant init <name> <path>`
    
    Examples:
      * vagrant init gios http://yoursever.com/giox.box
      * vagrant init gios /path/to/gios.box
    
-7. Start box using `vagrant up`
+8. Start box using `vagrant up`
 
 Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
