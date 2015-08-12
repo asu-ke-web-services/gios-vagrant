@@ -5,15 +5,21 @@ Vagrant Box creation scripts
 
 By default this box comes with:
 
-* Apache2
-* php5
+* Ubuntu 14.04
+* Apache 2.4
+* php5 ( Extensions: php5-cli, php5-common, php5-dev, php5-curl, php5-gd, php5-json, php5-imagick, php5-imap, php5-intl, php5-mcrypt, php5-memcache, php5-ming, php5-mysql, php5-ps, php5-pspell, php5-recode, php5-readline, php5-sqlite, php5-tidy, php5-xdebug, php5-xmlrpc, php5-xsl, php-pear )
 * MySQL-5.5
 * Wordpress - 4.2.4
-* phpmyadmin
+* phpmyadmin - 4.0.1
 * nodejs
 * grunt
 * composer
 * sass
+* subversion
+* git
+* curl
+* vim
+* phpunit
 
 The box contains MySQL, which has the following usernames, passwords, and databases by default:
 
@@ -24,6 +30,10 @@ The box contains MySQL, which has the following usernames, passwords, and databa
 * dbuser="root"
 * dbpass="root"
 * dbtable="wp_"
+
+The box contains phpmyadmin, which has the following username and password by default:
+   * username="root"
+   * password="root"
 
 ## Setup Instructions
 
@@ -95,22 +105,20 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 
   `sudo packer build template.json`
 
-  Note: Above command may fail if artifacts are already present you can force to create by using `-force` option
+  Note: Above command may fail if artifacts are already present. You can force to create by using `-force` option
 
-4. gios.box will the created in current directory.
+4. gios.box will be created in current directory.
 
 5. Remove any existing box installed with name `gios` using
 
     `vagrant box remove gios`
 
-6. To use box in the local file system or from url you below command.
+6. Intialize the box by using `vagrant init <name> <path>`
+   
+   Examples:
+     * vagrant init gios http://yoursever.com/giox.box
+     * vagrant init gios /path/to/gios.box
+   
+7. Start box using `vagrant up`
 
-    `vagrant box <name> <path>`
-
-    ```
-    Examples:
-     vagrant box gios http://yousever.com/giox.box
-     vagrant box gios /path/to/gios.box
-
-    ```
 Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
