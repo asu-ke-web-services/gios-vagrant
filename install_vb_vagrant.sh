@@ -20,7 +20,7 @@ if [ "$?" -ne "0" ] ; then
   wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
   apt-get -y install virtualbox-4.3
 else
-  echo "Virtualbox found not installing"
+  echo "Virtualbox found.. not installing"
 fi
 
 # Installing Vagrant. Download only if it doesnt exist
@@ -32,7 +32,7 @@ if [ "$?" -ne "0" ] ; then
   dpkg -i vagrant_1.7.4_x86_64.deb
   rm vagrant_1.7.4_x86_64.deb
 else
-  echo "vagrant found not installing"
+  echo "vagrant found.. not installing"
 fi
 
 #Install packer to use with vagrant
