@@ -70,7 +70,7 @@ Once set up, the box will have the following ports forwarded by default:
 
 It will also have the following paths mapped:
 
-* `./` => `/vagrant`
+* `./` => `/vagrant` i.e., current directory you selected in step 2 in host system is synced to /vagrant on guest system.
 
 It will have the following urls set up as well:
 
@@ -80,9 +80,19 @@ It will have the following urls set up as well:
 
 ## Changing the Settings
 
-You can change the settings for the box by updating the `Vagrantfile` located in the working directory you chose in step 2 of the above section. You can add new configuration or override the default configuration by editting the `Vagrantfile`. For example, if you want to map `../gios2-api` to `/var/www/html/gios2-api` you would add the following line to your `Vagrantfile`:
+You can change the settings for the box by updating the `Vagrantfile` located in the working directory you chose in step 2 of the above section. You can add new configuration or override the default configuration by editting the `Vagrantfile`. 
 
-`config.vm.synced_folder "../gios2-api", "/var/www/html/gios2-api"`
+### Examples:
+
+To map `../gios2-api` to `/var/www/html/gios2-api` add the following line to your `Vagrantfile`:
+
+  `config.vm.synced_folder "../gios2-api", "/var/www/html/gios2-api"`
+
+To map port from host 8888 to guest 80 add the following line to your `Vagrantfile`:
+
+ `config.vm.network "forwarded_port", guest: 80, host: 8888`
+
+For more options see [Vagrantfile Documentation](http://docs.vagrantup.com/v2/vagrantfile/index.html)
 
 After you make changes to your `Vagrantfile` you will need to run `vagrant reload`.
 
