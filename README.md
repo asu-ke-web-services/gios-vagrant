@@ -50,6 +50,12 @@ The box contains phpmyadmin, which has the following username and password by de
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
+  
+ To install on Windows follow these steps:
+  * Download and install the VirtualBox for Windows.
+  * Download and install vagrant for Windows.
+  * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+  * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
 2. Change your working directory to one you want to keep your Vagrantfile and sync the directory with guest machine.
 
@@ -116,18 +122,22 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 1. In order to build the box, you will require:
   - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v~4.3
   - [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
-  - [Packer](https://www.packer.io/) - v~0.8
+  - [Packer](http://www.packer.io/downloads.html) - v~0.8
 
-  Or run the following if you are on Ubuntu:
-
-  `sudo bash install_vb_vagrant.sh`
-
-
-2. Update the scripts/dep.sh file to add more packages as part of provision.
+  Follow same steps [Setup Instructions](#setup-instructions) for more details for installing `Vagrant` and `Virtualbox`.
+  
+  To install packer for Mac with homebrew:
+  
+  `brew install packer`
+  
+  To install on Windows follow these steps:
+  * Download packer and install manually from [here](http://www.packer.io/downloads.html)
+  
+2. Update the scripts/dep.sh file to add more packages as part of image creation.
 
 3. To create the box you can run below command.
 
-  `sudo packer build template.json`
+  `packer build template.json`
 
   Note: Above command may fail if artifacts are already present. You can force to create by using `-force` option
 
