@@ -108,7 +108,7 @@ After you make changes to your `Vagrantfile` you will need to run `vagrant reloa
 * `vagrant suspend` will essentially put the machine to 'sleep' with `vagrant resume` waking it back up
 * `vagrant halt` attempts a graceful shutdown of the machine and will need to be brought back with `vagrant up`
 * `vagrant ssh` gives you shell access to the virtual machine
-* `vagrant reload` equivalent of running a halt followed by an up. Any changes made to Vagrantfile will take effect after this command. Can also forcefully rerun provisioners with `vagrant reload -force provision`
+* `vagrant reload` equivalent of running a halt followed by an up. Any changes made to Vagrantfile will take effect after this command. Can also forcefully rerun provisioners with `vagrant reload --provision`
 * `vagrant status` shows the status of current vagrant machine
 * `vagrant global-status` shows information about all the vagrants on the host machine.
 * `vagrant init <box name> <box path>` sets up the box and creates a sample Vagrantfile in current working directory
