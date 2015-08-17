@@ -40,32 +40,33 @@ The box contains phpmyadmin, which has the following username and password by de
 1. This vagrant box requires:
     * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
     * [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
+    * [Git](https://desktop.github.com/)
   
-  To install them Ubuntu users can follow below steps: 
-  * Clone this repo: `git clone https://github.com/gios-asu/gios-vagrant.git`
-  * `cd gios-vagrant`
+2. Install git and clone this repo: `git clone https://github.com/gios-asu/gios-vagrant.git` or [dowload zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
+
+3. Change your current working directory to `gios-vagrant`
+  
+ ### Installing VirtualBox & Vagrant:
+ #### Ubuntu:
   * `sudo bash install_vb_vagrant.sh`
   
- To install them Mac users can use below steps if you have homebrew installed else do manual:
+ #### Mac: 
+  Install [homebrew](http://brew.sh/) using steps listed on their homepage. Once done run following commands:
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
   
- To install on Windows follow these steps:
+ #### Windows:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
-2. Change your working directory to one you want to keep your Vagrantfile and sync the directory with guest machine.
+4. Run the following command from `gios-vagrant` directory:
 
-3. Run the following command in the directory choosen in step 2 to install this Vagrant Box:
+  `vagrant up`
 
-  `vagrant init gios chasethenag420/gios`
-
-  Or, if you are cloning this repo and building the `gios.box`, you can use `vagrant init gios gios.box`. See [Building A Box](#building-a-box) for more details.
-
-4. To start the vagrant, run `vagrant up`
+5. Use `gios-vagrant/working_dir` to work on your web-apps 
 
 Once set up, the box will have the following ports forwarded by default:
 
@@ -76,7 +77,7 @@ Once set up, the box will have the following ports forwarded by default:
 
 It will also have the following paths mapped:
 
-* `./` => `/vagrant` i.e., current directory you selected in step 2 in host system is synced to /vagrant on guest system.
+* `./` => `/vagrant` i.e., current directory `gios-vagrant` in host system is synced to /vagrant on guest system.
 
 It will have the following urls set up as well:
 
@@ -86,7 +87,7 @@ It will have the following urls set up as well:
 
 ## Changing the Settings
 
-You can change the settings for the box by updating the `Vagrantfile` located in the working directory you chose in step 2 of the above section. You can add new configuration or override the default configuration by editting the `Vagrantfile`. 
+You can change the settings for the box by updating the `Vagrantfile` located in the working directory `gios-vagrant`. You can add new configuration or override the default configuration by editting the `Vagrantfile`. 
 
 ### Examples:
 
