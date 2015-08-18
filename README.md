@@ -61,13 +61,15 @@ The box contains phpmyadmin, which has the following username and password by de
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
-4. Open gios-vagrant/config file and replace `YOUR_GIT_USER_NAME` with your Git username and `YOUR_GIT_PASSWORD` with you Git password.
+4. Rename file `settings-default` located in `gios-vagrant` directory to `settings`.
 
-5. Run the following command in the `gios-vagrant` directory to work with this Vagrant Box:
+5. Open `settings` file and replace `YOUR_GIT_USER_NAME` with your [Git](https://desktop.github.com/) username and `YOUR_GIT_PASSWORD` with your [Git](https://desktop.github.com/) password.
+
+6. Run the following command in the `gios-vagrant` directory to work with this Vagrant Box:
 
   `vagrant up`
 
-6. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
+7. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
 
 The box will have the following ports forwarded by default:
 
