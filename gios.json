@@ -2,12 +2,24 @@
   "provisioners": [{
     "type": "shell",
     "scripts": [
-      "scripts/base.sh",
-      "scripts/virtualbox.sh",
-      "scripts/vagrant.sh",
-      "scripts/dep.sh",
-      "scripts/cleanup.sh",
-      "scripts/zerodisk.sh"
+      "image_scripts/base.sh",
+      "image_scripts/virtualbox.sh",
+      "image_scripts/vagrant.sh",
+      "image_scripts/install_base_packages.sh",
+      "image_scripts/add_package_sources.sh",
+      "image_scripts/install_git.sh",
+      "image_scripts/install_apache.sh",
+      "image_scripts/install_php.sh",
+      "image_scripts/install_mysql.sh",
+      "image_scripts/install_phpmyadmin.sh",
+      "image_scripts/install_phpunit.sh",
+      "image_scripts/install_nodejs.sh",
+      "image_scripts/install_sass.sh",
+      "image_scripts/install_composer.sh",
+      "image_scripts/install_wordpress.sh",
+      "image_scripts/install_xdebug.sh",
+      "image_scripts/cleanup.sh",
+      "image_scripts/zerodisk.sh"
     ],
     "override": {
       "virtualbox-iso": {
@@ -52,8 +64,7 @@
         "virtualbox": {
           "output": "gios.box"
         }
-      },
-      "vagrantfile_template": "default_vagrant_config"
+      }
     }]
   ]
 }
