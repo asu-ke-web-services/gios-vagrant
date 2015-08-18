@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 # Installs VirtualBox, Vagrant, Packer. Run as root
-set -e
 
 main(){
   bootstrap
