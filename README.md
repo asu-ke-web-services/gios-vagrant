@@ -39,13 +39,15 @@ The box contains phpmyadmin, which has the following username and password by de
     * [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
     * [Git](https://desktop.github.com/)
   
-2. Install git and clone this repo: `git clone https://github.com/gios-asu/gios-vagrant.git` or [dowload zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
+2. Install [Git](https://desktop.github.com/) and clone this repo: 
+ `git clone https://github.com/gios-asu/gios-vagrant.git`
+  or [dowload zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
 
 3. Change your current working directory to `gios-vagrant`
   
  ### Installing VirtualBox & Vagrant:
  #### Ubuntu:
-  * `sudo bash install_vb_vagrant.sh`
+  `sudo bash install_vb_vagrant.sh`
   
  #### Mac: 
   Install [homebrew](http://brew.sh/) using steps listed on their homepage. Once done run following commands:
@@ -59,12 +61,13 @@ The box contains phpmyadmin, which has the following username and password by de
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
+4. Open gios-vagrant/config file and replace `YOUR_GIT_USER_NAME` with your Git username and `YOUR_GIT_PASSWORD` with you Git password.
 
-4. Run the following command in the `gios-vagrant` directory to work with this Vagrant Box:
+5. Run the following command in the `gios-vagrant` directory to work with this Vagrant Box:
 
   `vagrant up`
 
-5. You can see gios web-apps in `gios-vagrant/working_dir` directory.
+6. You can see gios web-apps in `gios-vagrant/working_dir` directory.
 
 The box will have the following ports forwarded by default:
 
@@ -82,6 +85,18 @@ It will have the following urls set up as well:
 * localhost:8000
 * localhost:8000/wordpress
 * localhost:8000/phpmyadmin
+
+The following gios-asu repos are cloned into `gios-vagrant/working_dir/html` directory. 
+* gios2-php
+* gios2-wp
+* wordpress-news-kiosk-plugin
+* wp-front-end-editor
+* wordpress-newsletter-plugin
+* ASU-Web-Standards-Wordpress-Theme
+
+Add more by updating `provision.sh` and the run below command in `gios-vagrant` directory
+
+`vagrant reload --provision`
 
 ## Changing the Settings
 
