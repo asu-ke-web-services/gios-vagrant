@@ -1,5 +1,5 @@
 vagrant_1.7.4_x86_64.deb
 packer_cache/*
-Vagrantfile
 gios.box
 .vagrant/*
+working_dir/*

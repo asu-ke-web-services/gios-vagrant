@@ -1,7 +1,0 @@
-Vagrant.configure(2) do |config|
-    config.vm.box = "gios"
-    config.vm.box_url = "gios.box"
-    config.vm.network "forwarded_port", guest: 80, host: 8000
-    config.vm.network "forwarded_port", guest: 443, host: 44300
-    config.vm.network "forwarded_port", guest: 3306, host: 33060
-end

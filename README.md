@@ -40,6 +40,7 @@ The box contains phpmyadmin, which has the following username and password by de
 1. This vagrant box requires:
     * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
     * [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
+<<<<<<< Updated upstream
     * [Git](https://desktop.github.com/)
   
 2. Install git and clone this repo: `git clone https://github.com/gios-asu/gios-vagrant.git` or [dowload zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
@@ -52,6 +53,15 @@ The box contains phpmyadmin, which has the following username and password by de
   
  #### Mac: 
   Install [homebrew](http://brew.sh/) using steps listed on their homepage. Once done run following commands:
+=======
+
+  To install them Ubuntu users can follow below steps:
+  * Clone this repo: `git clone https://github.com/gios-asu/gios-vagrant.git`
+  * `cd gios-vagrant`
+  * `sudo bash install_vb_vagrant.sh`
+
+ To install them Mac users can use below steps if you have homebrew installed else do manual:
+>>>>>>> Stashed changes
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
@@ -62,7 +72,15 @@ The box contains phpmyadmin, which has the following username and password by de
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
+<<<<<<< Updated upstream
 4. Run the following command from `gios-vagrant` directory:
+=======
+2. Change your working directory to one you want to keep your Vagrantfile and sync the directory with guest machine.
+
+3. Run the following command in the directory choosen in step 2 to install this Vagrant Box:
+
+  `vagrant up gios-asu/gios`
+>>>>>>> Stashed changes
 
   `vagrant up`
 
@@ -87,7 +105,11 @@ It will have the following urls set up as well:
 
 ## Changing the Settings
 
+<<<<<<< Updated upstream
 You can change the settings for the box by updating the `Vagrantfile` located in the working directory `gios-vagrant`. You can add new configuration or override the default configuration by editting the `Vagrantfile`. 
+=======
+You can change the settings for the box by updating the `Vagrantfile` located in the working directory you chose in step 2 of the above section. You can add new configuration or override the default configuration by editting the `Vagrantfile`.
+>>>>>>> Stashed changes
 
 ### Examples:
 
@@ -113,7 +135,7 @@ After you make changes to your `Vagrantfile` you will need to run `vagrant reloa
 * `vagrant status` shows the status of current vagrant machine
 * `vagrant global-status` shows information about all the vagrants on the host machine.
 * `vagrant init <box name> <box path>` sets up the box and creates a sample Vagrantfile in current working directory
-* `vagrant destroy` destroys the box running from current working directory 
+* `vagrant destroy` destroys the box running from current working directory
 * `vagrant box remove <box name>` removes the box completely so that next time when you do `vagrant init <box name>  <box path>` it forces to install a fresh box.
 * `vagrant box add <box name> <box path>` same like `vagrant init <box name> <box path> but doesn't create Vagrantfile
 
@@ -152,11 +174,11 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
     `vagrant box remove gios`
 
 7. Change to directory you want to keep vagrant files and Intialize the box by using `vagrant init <box name> <box path>`
-   
+
    Examples:
      * vagrant init gios http://yoursever.com/giox.box
      * vagrant init gios /path/to/gios.box
-   
+
 8. Start box using `vagrant up`
 
 Note: Optionally you can push the box to gios-asu on [Altas](https://atlas.hashicorp.com) so it can be distributed easily.
