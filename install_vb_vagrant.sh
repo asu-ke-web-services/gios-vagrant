@@ -19,7 +19,10 @@ install_virtualbox() {
   which virtualbox >/dev/null
   if [ "$?" -ne "0" ] ; then
     echo "Virtualbox not found..Installing now"
-    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian saucy contrib' -y
+    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian vivid contrib' -y
+    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian trusty contrib' -y
+    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian precise contrib' -y
+    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian utopic contrib' -y
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
     apt-get -y install virtualbox-4.3
   else
