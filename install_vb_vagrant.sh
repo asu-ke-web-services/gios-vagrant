@@ -12,7 +12,17 @@ main(){
 
 bootstrap() {
   apt-get -y update && \
-  apt-get -y install python-software-properties unzip
+  apt-get -y install \
+  linux-headers-$(uname -r)
+  build-essential \
+  curl \
+  libcurl4-gnutls-dev \
+  libexpat1-dev \
+  libssl-dev \
+  python-software-properties \
+  software-properties-common \
+  unzip \
+  wget
 }
 
 install_virtualbox() {
@@ -24,6 +34,7 @@ install_virtualbox() {
     sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian '$CODENAME' contrib" >> /etc/apt/sources.list'
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
     apt-get update && apt-get -y install virtualbox-4.3
+    /etc/init.d/vboxdrv setup
   else
     echo "Virtualbox found.. not installing"
   fi
