@@ -1,12 +1,13 @@
-GIT_USER_NAME=YOUR_GIT_USER_NAME
-GIT_PASSWORD=YOUR_GIT_PASSWORD
+#!/bin/bash
+set -e
 
 #These variables are stored in a file in guest machine and the file
 # will be deleted after provisioning that way provision script can have user
 # defined variables
 store_variables(){
-  echo "export GIT_USER_NAME=${GIT_USER_NAME}" > /etc/profile.d/config
-  echo "export GIT_PASSWORD=${GIT_PASSWORD}" >> /etc/profile.d/config
+  cat /tmp/settings | while read -r line || [[ -n "$line" ]]; do
+    echo "export ${line}" >> /etc/profile.d/config
+  done
   chmod +x /etc/profile.d/config
 }
 store_variables

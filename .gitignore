@@ -3,3 +3,4 @@ packer_cache/*
 gios.box
 .vagrant/*
 working_dir/*
+settings
