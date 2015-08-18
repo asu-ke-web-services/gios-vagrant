@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 # Installs VirtualBox, Vagrant, Packer. Run as root
-
+set -x
+$CODENAME=`lsb_release -c | awk -F ":" '{print $2}'|xargs`
 main(){
   bootstrap
   install_virtualbox
@@ -19,10 +20,8 @@ install_virtualbox() {
   which virtualbox >/dev/null
   if [ "$?" -ne "0" ] ; then
     echo "Virtualbox not found..Installing now"
-    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian vivid contrib' -y
-    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian trusty contrib' -y
-    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian precise contrib' -y
-    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian utopic contrib' -y
+
+    sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $CODENAME contrib" >> /etc/apt/sources.list'
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
     apt-get -y install virtualbox-4.3
   else
