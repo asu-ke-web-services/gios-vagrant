@@ -67,7 +67,7 @@ The box contains phpmyadmin, which has the following username and password by de
 
   `vagrant up`
 
-6. You can see gios web-apps in `gios-vagrant/working_dir` directory.
+6. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
 
 The box will have the following ports forwarded by default:
 
