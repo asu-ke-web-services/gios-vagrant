@@ -34,7 +34,6 @@ install_virtualbox() {
     sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian '$CODENAME' contrib" >> /etc/apt/sources.list'
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
     apt-get update && apt-get -y install virtualbox-4.3
-    /etc/init.d/vboxdrv setup
   else
     echo "Virtualbox found.. not installing"
   fi
