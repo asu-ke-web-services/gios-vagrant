@@ -15,7 +15,11 @@ set -e
 WEB_PATH=/var/www/html
 WP_PLUGIN_DIR=${WEB_PATH}/wordpress/wp-content/plugins
 WP_THEMES_DIR=${WEB_PATH}/wordpress/wp-content/themes
-
+GIT_AUTHENTICATION_PREFIX="${GIT_USER_NAME}:${GIT_PASSWORD}@"
+IS_TRAVIS_BUILD="${IS_TRAVIS_BUILD}"
+if [ "${IS_TRAVIS_BUILD}" == "YES" ]; then
+  GIT_AUTHENTICATION_PREFIX=""
+fi
 main(){
   install_web_apps
   install_wp_plugins
@@ -41,7 +45,10 @@ install_wordpress_news_kiosk_plugin(){
 }
 
 install_gios_wp_plugin(){
-  install_repo ${WP_PLUGIN_DIR} gios2-wp
+  #Do not install private repo on travis as we not have authentication details
+  if [ "${IS_TRAVIS_BUILD}" != "YES" ]; then
+    install_repo ${WP_PLUGIN_DIR} gios2-wp
+  fi
 }
 
 install_wp_front_end_editor_plugin(){
@@ -53,7 +60,10 @@ install_wordpress_newsletter_plugin(){
 }
 
 install_gios2_api(){
-  install_repo ${WEB_PATH} gios2-php
+  #Do not install private repo on travis as we not have authentication details
+  if [ "${IS_TRAVIS_BUILD}" != "YES" ]; then
+    install_repo ${WEB_PATH} gios2-php
+  fi
 }
 
 install_asu_web_standards_wordpress_theme(){
@@ -75,7 +85,7 @@ install_repo(){
   local ORG_NAME=${3-gios-asu}
   cd "${SETUP_DIR}"
   if [ ! -d "${SETUP_DIR}"/"${REPO_NAME}" ]; then
-    git clone --recursive https://"${GIT_USER_NAME}":"${GIT_PASSWORD}"@github.com/"${ORG_NAME}"/"${REPO_NAME}".git
+    git clone --recursive https://"${GIT_AUTHENTICATION_PREFIX}"github.com/"${ORG_NAME}"/"${REPO_NAME}".git
 
     #Remove any username password stored as plain text in .git/config
     cd "${REPO_NAME}"

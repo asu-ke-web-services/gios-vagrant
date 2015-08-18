@@ -1,0 +1,11 @@
+language: bash
+
+before_install:
+  - sudo bash ./tests/bootstrap.sh
+  - sudo bash ./install_vb_vagrant.sh
+
+before_script:
+  - vagrant up
+
+script:
+  - bash ./tests/unit_tests.sh
