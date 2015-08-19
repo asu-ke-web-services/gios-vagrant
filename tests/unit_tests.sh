@@ -7,7 +7,8 @@ WP_PLUGIN_DIR="${WP_DIR}"/wp-content/plugins
 WP_THEME_DIR="${WP_DIR}"/wp-content/themes
 
 PACKAGES=( php apache2 mysql git grunt nodejs npm composer sass phpunit )
-PORTS=( 80 443 22 3306 )
+GUEST_PORTS=( 80 443 22 3306 )
+HOST_PORTS=( 8000 44300 2222 33060 )
 DIRS=( /usr/share/phpmyadmin "${WP_DIR}" "${WEB_APP_PATH}"/gios2-php "${WP_PLUGIN_DIR}"/gios2-wp "${WP_PLUGIN_DIR}"/wordpress-news-kiosk-plugin "${WP_THEME_DIR}"/ASU-Web-Standards-Wordpress-Theme )
 SYMLINKS=( "${WEB_APP_PATH}"/phpmyadmin )
 
@@ -18,6 +19,8 @@ main(){
   test_symlinks
   test_dirs
   test_ports_on_guest
+  test_ports_on_host
+  echo "All tests Completed without errors"
 }
 
 start_gios_box() {
@@ -45,9 +48,17 @@ test_symlinks() {
 }
 
 test_ports_on_guest() {
-  for i in "${PORTS[@]}"
+  for i in "${GUEST_PORTS[@]}"
   do
     status=$( port_listen_status "$i" | grep -c 'LISTEN' )
+    print_msg_if_count_zero "$status" "Port $i"
+  done
+}
+
+test_ports_on_host() {
+  for i in "${HOST_PORTS[@]}"
+  do
+    status=$( netstat -an | grep "$i" | grep -c 'LISTEN' )
     print_msg_if_count_zero "$status" "Port $i"
   done
 }
