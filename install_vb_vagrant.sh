@@ -11,6 +11,7 @@ main(){
 }
 
 bootstrap() {
+  apt-cache search linux-headers-$(uname -r)
   apt-get -y update && \
   apt-get -y install \
   linux-headers-$(uname -r)
