@@ -16,10 +16,6 @@ WEB_PATH=/var/www/html
 WP_PLUGIN_DIR=${WEB_PATH}/wordpress/wp-content/plugins
 WP_THEMES_DIR=${WEB_PATH}/wordpress/wp-content/themes
 GIT_AUTHENTICATION_PREFIX="${GIT_USER_NAME}:${GIT_PASSWORD}@"
-IS_TRAVIS_BUILD="${IS_TRAVIS_BUILD}"
-if [ "${IS_TRAVIS_BUILD}" == "YES" ]; then
-  GIT_AUTHENTICATION_PREFIX=""
-fi
 main(){
   install_web_apps
   install_wp_plugins
@@ -45,10 +41,7 @@ install_wordpress_news_kiosk_plugin(){
 }
 
 install_gios_wp_plugin(){
-  #Do not install private repo on travis as we not have authentication details
-  if [ "${IS_TRAVIS_BUILD}" != "YES" ]; then
-    install_repo ${WP_PLUGIN_DIR} gios2-wp
-  fi
+  install_repo ${WP_PLUGIN_DIR} gios2-wp
 }
 
 install_wp_front_end_editor_plugin(){
@@ -60,10 +53,7 @@ install_wordpress_newsletter_plugin(){
 }
 
 install_gios2_api(){
-  #Do not install private repo on travis as we not have authentication details
-  if [ "${IS_TRAVIS_BUILD}" != "YES" ]; then
-    install_repo ${WEB_PATH} gios2-php
-  fi
+  install_repo ${WEB_PATH} gios2-php
 }
 
 install_asu_web_standards_wordpress_theme(){

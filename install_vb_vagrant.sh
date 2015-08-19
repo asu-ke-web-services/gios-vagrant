@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # Installs VirtualBox, Vagrant, Packer. Run as root
-set -x
 CODENAME=`lsb_release -c | awk -F ":" '{print $2}'|xargs`
+
 main(){
   bootstrap
   install_virtualbox
