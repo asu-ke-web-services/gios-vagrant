@@ -14,7 +14,7 @@ bootstrap() {
   apt-cache search linux-headers-$(uname -r)
   apt-get -y update && \
   apt-get -y install \
-  linux-headers-$(uname -r)
+  linux-headers-$(uname -r) \
   build-essential \
   curl \
   libcurl4-gnutls-dev \
