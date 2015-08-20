@@ -54,10 +54,12 @@ The box contains phpmyadmin, which has the following username and password by de
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
+  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
   
  #### Windows:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
+  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
@@ -70,6 +72,11 @@ The box contains phpmyadmin, which has the following username and password by de
   `vagrant up`
 
 7. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
+
+8. You can now access the guest machine using following urls:
+  * `dev.gios/wordpress` or `dev.gios.asu.edu/wordpress`
+  * `dev.gios/phpmyadmin` or `dev.gios.asu.edu/phpmyadmin`
+  * `dev.gios` or `dev.gios.asu.edu`
 
 The box will have the following ports forwarded by default:
 
