@@ -74,9 +74,9 @@ The box contains phpmyadmin, which has the following username and password by de
 7. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
 
 8. You can now access the guest machine using following urls:
-  * `dev.gios/wordpress` or `dev.gios.asu.edu/wordpress`
-  * `dev.gios/phpmyadmin` or `dev.gios.asu.edu/phpmyadmin`
-  * `dev.gios` or `dev.gios.asu.edu`
+  * `dev.gios/wordpress`
+  * `dev.gios/phpmyadmin`
+  * `dev.gios`
 
 The box will have the following ports forwarded by default:
 
