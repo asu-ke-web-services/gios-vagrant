@@ -137,7 +137,8 @@ After you make changes to your `Vagrantfile` you will need to run `vagrant reloa
 * `vagrant init <box name> <box path>` sets up the box and creates a sample Vagrantfile in current working directory
 * `vagrant destroy` destroys the box running from current working directory (Do not destory unless you want to loose data and fresh box. Use `vagrant suspend` to have data persistent and to use same box later)
 * `vagrant box remove <box name>` removes the box completely so that next time when you do `vagrant init <box name>  <box path>` it forces to install a fresh box.
-* `vagrant box add <box name> <box path>` same like `vagrant init <box name> <box path> but doesn't create Vagrantfile
+* `vagrant box add <box name> <box path>` same like `vagrant init <box name> <box path> but doesn't create Vagrantfile.
+* `vagrant box update` from the `gios-vagrant` path will check for new version and downloads it.
 
 Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
