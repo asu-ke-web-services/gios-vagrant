@@ -18,7 +18,6 @@ install_phpadmin() {
 
   apt-get -y update  && \
   apt-get -y install phpmyadmin
-  ln -sf /usr/share/phpmyadmin ${APACHE_WEB_PATH}/html
 }
 
 main_phpmyadmin
