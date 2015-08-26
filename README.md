@@ -9,7 +9,7 @@ This box comes with:
 * Apache 2.4
 * php5 (Extensions: php5-cli, php5-common, php5-dev, php5-curl, php5-gd, php5-json, php5-imagick, php5-imap, php5-intl, php5-mcrypt, php5-memcache, php5-ming, php5-mysql, php5-ps, php5-pspell, php5-recode, php5-readline, php5-sqlite, php5-tidy, php5-xdebug, php5-xmlrpc, php5-xsl, php-pear)
 * MySQL-5.5
-* Wordpress - 4.2.4
+* Wordpress - 4.3
 * phpmyadmin - 4.0.1
 * nodejs
 * grunt
@@ -54,10 +54,12 @@ The box contains phpmyadmin, which has the following username and password by de
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
+  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
   
  #### Windows:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
+  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
@@ -70,6 +72,11 @@ The box contains phpmyadmin, which has the following username and password by de
   `vagrant up`
 
 7. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
+
+8. You can now access the guest machine using following urls:
+  * `dev.gios/wordpress`
+  * `dev.gios/phpmyadmin`
+  * `dev.gios`
 
 The box will have the following ports forwarded by default:
 
@@ -130,7 +137,8 @@ After you make changes to your `Vagrantfile` you will need to run `vagrant reloa
 * `vagrant init <box name> <box path>` sets up the box and creates a sample Vagrantfile in current working directory
 * `vagrant destroy` destroys the box running from current working directory (Do not destory unless you want to loose data and fresh box. Use `vagrant suspend` to have data persistent and to use same box later)
 * `vagrant box remove <box name>` removes the box completely so that next time when you do `vagrant init <box name>  <box path>` it forces to install a fresh box.
-* `vagrant box add <box name> <box path>` same like `vagrant init <box name> <box path> but doesn't create Vagrantfile
+* `vagrant box add <box name> <box path>` same like `vagrant init <box name> <box path> but doesn't create Vagrantfile.
+* `vagrant box update` from the `gios-vagrant` path will check for new version and downloads it.
 
 Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2/).
 
