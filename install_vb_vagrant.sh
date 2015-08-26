@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Installs VirtualBox, Vagrant, Packer. Run as root
-set -e
+CODENAME=`lsb_release -c | awk -F ":" '{print $2}'|xargs`
 
 main(){
   bootstrap
@@ -11,8 +11,19 @@ main(){
 }
 
 bootstrap() {
+  apt-cache search linux-headers-$(uname -r)
   apt-get -y update && \
-  apt-get -y install python-software-properties unzip
+  apt-get -y install \
+  linux-headers-$(uname -r) \
+  build-essential \
+  curl \
+  libcurl4-gnutls-dev \
+  libexpat1-dev \
+  libssl-dev \
+  python-software-properties \
+  software-properties-common \
+  unzip \
+  wget
 }
 
 install_virtualbox() {
@@ -20,9 +31,10 @@ install_virtualbox() {
   which virtualbox >/dev/null
   if [ "$?" -ne "0" ] ; then
     echo "Virtualbox not found..Installing now"
-    apt-add-repository 'deb http://download.virtualbox.org/virtualbox/debian saucy contrib' -y
+
+    sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian '$CODENAME' contrib" >> /etc/apt/sources.list'
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
-    apt-get -y install virtualbox-4.3
+    apt-get update && apt-get -y install virtualbox-4.3
   else
     echo "Virtualbox found.. not installing"
   fi
@@ -36,6 +48,7 @@ install_vagrant() {
     wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb
     dpkg -i vagrant_1.7.4_x86_64.deb
     rm vagrant_1.7.4_x86_64.deb
+    vagrant plugin install vagrant-hostsupdater
   else
     echo "Vagrant found.. not installing"
   fi
