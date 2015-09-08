@@ -54,12 +54,12 @@ The box contains phpmyadmin, which has the following username and password by de
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
-  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
+  * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
   
  #### Windows:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
-  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
+  * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
