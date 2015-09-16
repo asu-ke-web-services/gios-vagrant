@@ -9,7 +9,7 @@ This box comes with:
 * Apache 2.4
 * php5 (Extensions: php5-cli, php5-common, php5-dev, php5-curl, php5-gd, php5-json, php5-imagick, php5-imap, php5-intl, php5-mcrypt, php5-memcache, php5-ming, php5-mysql, php5-ps, php5-pspell, php5-recode, php5-readline, php5-sqlite, php5-tidy, php5-xdebug, php5-xmlrpc, php5-xsl, php-pear)
 * MySQL-5.5
-* Wordpress - 4.3
+* Wordpress - 4.2.4
 * phpmyadmin - 4.0.1
 * nodejs
 * grunt
@@ -54,12 +54,12 @@ The box contains phpmyadmin, which has the following username and password by de
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
-  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
+  * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
   
  #### Windows:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
-  * Install vagrant plugin with command `vagrant plugin install vagrant-hostsupdater`
+  * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
 
