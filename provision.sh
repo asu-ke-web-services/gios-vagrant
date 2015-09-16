@@ -64,7 +64,6 @@ setup_coding_standards(){
   local CODING_STANDARDS_DIR=${1}/.standards
   if [ -d "${CODING_STANDARDS_DIR}" ]; then
     cd "${CODING_STANDARDS_DIR}"
-    npm install -g grunt grunt-cli
     npm install
     composer install
     ./vendor/bin/phpcs -vvv -w --config-set installed_paths "../../../coding_standards/"
@@ -125,6 +124,7 @@ install_wp() {
       define( 'WP_DEBUG_LOG', true );
       define( 'WP_DEBUG_DISPLAY', true );
       define( 'SCRIPT_DEBUG', true ) ;
+      define( 'WP_ALLOW_MULTISITE', true );
 
 END_HEREDOC
 )

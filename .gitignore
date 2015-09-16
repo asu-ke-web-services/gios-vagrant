@@ -4,3 +4,4 @@ gios.box
 .vagrant/*
 working_dir/*
 settings
+output-virtualbox-iso/*

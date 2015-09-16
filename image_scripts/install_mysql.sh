@@ -8,11 +8,13 @@ DB_NAME=${3-wordpress}
 DB_USER=${4-root}
 DB_PASS=${5-root}
 DB_HOST=${6-localhost}
-
+mysql_config_file=/etc/mysql/my.cnf
 main_mysql(){
   install_mysql
   mysql_restart
   configure_db
+  allow_host_to_connect_mysql
+  mysql_restart
 }
 
 install_mysql() {
@@ -52,6 +54,12 @@ configure_db() {
     echo "Database creation failed. Aborting."
     exit 1
   fi
+}
+
+allow_host_to_connect_mysql() {
+  perl -pi -e "s/bind-address/#bind-address/g" ${mysql_config_file}
+  dbsetup="GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS' WITH GRANT OPTION;FLUSH PRIVILEGES;"
+  mysql --user="$DB_USER" --password="$DB_PASS" --force -e "$dbsetup"
 }
 
 main_mysql

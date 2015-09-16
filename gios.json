@@ -15,8 +15,8 @@
       "image_scripts/install_phpunit.sh",
       "image_scripts/install_nodejs.sh",
       "image_scripts/install_sass.sh",
+      "image_scripts/install_grunt.sh",
       "image_scripts/install_composer.sh",
-      "image_scripts/install_xdebug.sh",
       "image_scripts/cleanup.sh",
       "image_scripts/zerodisk.sh"
     ],
