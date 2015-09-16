@@ -2,7 +2,6 @@
 set -e
 MY_SQL_USER=${1-root}
 MY_SQL_PASS=${2-root}
-APACHE_WEB_PATH=${3-/var/www/}
 
 main_phpmyadmin() {
   install_phpadmin
