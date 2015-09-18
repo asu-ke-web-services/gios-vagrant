@@ -3,5 +3,8 @@ packer_cache/*
 gios.box
 .vagrant/*
 working_dir/*
+!working_dir/html
+working_dir/html/*
+!working_dir/html/index.php
 settings
 output-virtualbox-iso/*
