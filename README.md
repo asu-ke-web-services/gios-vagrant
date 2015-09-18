@@ -7,9 +7,9 @@ This box comes with:
 
 * Ubuntu 14.04
 * Apache 2.4
-* php5 (Extensions: php5-cli, php5-common, php5-dev, php5-curl, php5-gd, php5-json, php5-imagick, php5-imap, php5-intl, php5-mcrypt, php5-memcache, php5-ming, php5-mysql, php5-ps, php5-pspell, php5-recode, php5-readline, php5-sqlite, php5-tidy, php5-xdebug, php5-xmlrpc, php5-xsl, php-pear)
+* php5 (Extensions: php5-cli, php5-common, php5-curl, php5-dev, php5-gd, php5-imagick, php5-json, php5-mysql, php5-readline, php5-tidy, php-pear)
 * MySQL-5.5
-* Wordpress - 4.2.4
+* Wordpress - latest
 * phpmyadmin - 4.0.1
 * nodejs
 * grunt
@@ -38,24 +38,24 @@ The box contains phpmyadmin, which has the following username and password by de
     * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v4~
     * [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
     * [Git](https://desktop.github.com/)
-  
-2. Install [Git](https://desktop.github.com/) and clone this repo: 
+
+2. Install [Git](https://desktop.github.com/) and clone this repo:
  `git clone https://github.com/gios-asu/gios-vagrant.git`
   or [dowload zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
 
 3. Change your current working directory to `gios-vagrant`
-  
+
  ### Installing VirtualBox & Vagrant:
  #### Ubuntu:
   `sudo bash install_vb_vagrant.sh`
-  
- #### Mac: 
+
+ #### Mac:
   Install [homebrew](http://brew.sh/) using steps listed on their homepage. Once done run following commands:
   * `brew cask install virtualbox`
   * `brew cask install vagrant`
   * `brew cask install vagrant-manager`
   * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
-  
+
  #### Windows:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
@@ -95,7 +95,7 @@ It will have the following urls set up as well:
 * localhost:8000/wordpress
 * localhost:8000/phpmyadmin
 
-The following gios-asu repos are cloned into `gios-vagrant/working_dir/html` directory. 
+The following gios-asu repos are cloned into `gios-vagrant/working_dir/html` directory.
 * gios2-php
 * gios2-wp
 * wordpress-news-kiosk-plugin
@@ -150,20 +150,20 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
   - [Packer](http://www.packer.io/downloads.html) - v~0.8
 
   Follow steps as in [Setup Instructions](#setup-instructions) for installing `Vagrant` and `Virtualbox`.
-  
+
   ### Installing packer
   #### Ubuntu
-  
+
   `sudo bash install_vb_vagrant.sh`
-  
+
  #### Mac
 
   `brew install packer`
-  
+
  #### Windows
- 
+
   Download packer and install manually from [here](http://www.packer.io/downloads.html)
-  
+
 2. Update the image\_scripts/xxxx.sh file to change and existing package or add new script file to add complete new package images\_scripts/new_file.sh and add this file name in `gios.json` file to include as part of image creation.
 
 3. To create the box you can run below command.
@@ -174,10 +174,10 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 
 4. `gios.box` will be created in current directory `gios-vagrant`.
 
-5. Upload this box to [gios-asu on Altas](https://atlas.hashicorp.com/gios-asu/boxes/gios) and update version number. 
+5. Upload this box to [gios-asu on Altas](https://atlas.hashicorp.com/gios-asu/boxes/gios) and update version number.
 
 6. Destroy any previously running box in `gios-vagrant` directory using below command
-  
+
   `vagrant destroy`.`
 
 7. Start box using `vagrant up`
