@@ -2,7 +2,7 @@ $script = <<SCRIPT
 cp /vagrant/settings /tmp/settings
 SCRIPT
 Vagrant.configure(2) do |config|
-  config.vm.box = "gios.box"
+  config.vm.box = "gios-asu/gios"
   config.vm.network "forwarded_port", guest: 80, host: 8000
   config.vm.network "forwarded_port", guest: 443, host: 44300
   config.vm.network "forwarded_port", guest: 3306, host: 33060
