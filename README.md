@@ -78,8 +78,8 @@ The box contains phpmyadmin, which has the following username and password by de
   * `dev.gios/phpmyadmin`
   * `dev.gios`
 9. If you are going to use git configure username and email id by logging into vagrant machine using `vagrant ssh`:
-  * `git config --global user.name "YOUR_NAME"
-  * `git config --global user.email "YOUR_EMAIL"
+  * `git config --global user.name "YOUR_NAME"`
+  * `git config --global user.email "YOUR_EMAIL"`
 
 The box will have the following ports forwarded by default:
 
