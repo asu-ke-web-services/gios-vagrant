@@ -8,7 +8,6 @@
 # If you want to rerun provision scripts you can do vagrant reload --provision
 # If you want changes to be permanent and be part of image which you want
 # to build add the changes in image_scripts directory.
-set -x
 . /etc/profile.d/config
 
 DB_NAME=${1-wordpress}
@@ -17,7 +16,7 @@ DB_PASS=${3-root}
 DB_HOST=${4-localhost}
 DB_TABLE_PREFIX=${5-wp_}
 WEB_APP_PATH=${6-/var/www/html}
-WP_VERSION=${7-4.2.4}
+WP_VERSION=${7-latest}
 
 WP_SETUP_DIR=${WEB_APP_PATH}/wordpress
 WP_PLUGIN_DIR=${WEB_APP_PATH}/wordpress/wp-content/plugins

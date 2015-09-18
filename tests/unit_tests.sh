@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 APACHE_WEB_PATH=${1-/var/www}
 WEB_APP_PATH="${APACHE_WEB_PATH}"/html
 WP_DIR="${WEB_APP_PATH}"/wordpress
@@ -14,12 +13,19 @@ SYMLINKS=( "${WEB_APP_PATH}"/phpmyadmin )
 
 main(){
   start_gios_box
+  print_status '.          10%'
   test_vagrant_running_status
+  print_status '...        30%'
   test_packages
+  print_status '....       40%'
   test_symlinks
+  print_status '......     60%'
   test_dirs
+  print_status '........   80%'
   test_ports_on_guest
+  print_status '.........  90%'
   test_ports_on_host
+  print_status '..........100%'
   echo "All tests Completed without errors"
 }
 
@@ -28,7 +34,7 @@ start_gios_box() {
 }
 
 test_vagrant_running_status() {
-  gios_vagrant_path=$( dirname $( pwd ) )
+  gios_vagrant_path=$( dirname "$( pwd )" )
   status=$( get_vagrant_global_status | grep -c "$gios_vagrant_path" )
   print_msg_if_count_zero "$status" 'Vagrant not running'
 }
@@ -36,14 +42,14 @@ test_vagrant_running_status() {
 test_dirs() {
   for i in "${DIRS[@]}"
   do
-    run_function_on_vagrant test_dir_exists $i
+    run_function_on_vagrant test_dir_exists "$i"
   done
 }
 
 test_symlinks() {
   for i in "${SYMLINKS[@]}"
   do
-    run_function_on_vagrant test_symbolic_link_exists $i
+    run_function_on_vagrant test_symbolic_link_exists "$i"
   done
 }
 
@@ -111,4 +117,7 @@ print_msg_if_count_zero() {
   fi
 }
 
+print_status() {
+  echo -ne "$1\r"
+}
 main
