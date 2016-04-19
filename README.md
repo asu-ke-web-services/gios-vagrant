@@ -74,9 +74,9 @@ The box contains phpmyadmin, which has the following username and password by de
 7. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
 
 8. You can now access the guest machine using following urls:
-  * `dev.gios/wordpress`
-  * `dev.gios/phpmyadmin`
-  * `dev.gios`
+  * `local.gios.asu.edu/wordpress`
+  * `local.gios.asu.edu/phpmyadmin`
+  * `local.gios.asu.edu`
 9. If you are going to use git configure username and email id by logging into vagrant machine using `vagrant ssh`:
   * `git config --global user.name "YOUR_NAME"`
   * `git config --global user.email "YOUR_EMAIL"`
