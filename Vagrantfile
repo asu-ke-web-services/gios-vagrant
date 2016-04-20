@@ -13,6 +13,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "provision_scripts/provision.sh", args: "wordpress root root localhost wp_ /var/www/html latest"
   config.vm.provision "shell", path: "provision_scripts/after_provision.sh"
   config.vm.network :private_network, ip: "192.168.160.196"
-  config.vm.hostname = "local.gios"
+  config.vm.hostname = "local.gios.asu.edu"
   config.ssh.pty = true
 end
