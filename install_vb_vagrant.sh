@@ -45,7 +45,7 @@ install_vagrant() {
   which vagrant >/dev/null
   if [ "$?" -ne "0" ] ; then
     echo "Vagrant not found..Installing now"
-    wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb
+    wget https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_x86_64.deb
     dpkg -i vagrant_1.7.4_x86_64.deb
     rm vagrant_1.7.4_x86_64.deb
     vagrant plugin install vagrant-hostsupdater
@@ -65,7 +65,7 @@ install_packer() {
       mkdir packer
     fi
     cd packer
-    wget https://dl.bintray.com/mitchellh/packer/packer_0.8.2_linux_amd64.zip
+    wget https://releases.hashicorp.com/packer/0.8.2/packer_0.8.2_linux_amd64.zip
     unzip -o packer_0.8.2_linux_amd64.zip
     rm packer_0.8.2_linux_amd64.zip
     export PATH=$PATH:$HOME/packer/
