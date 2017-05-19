@@ -27,14 +27,14 @@ bootstrap() {
 }
 
 install_virtualbox() {
-  # Installing Virtual Box 4.3
+  # Installing Virtual Box 5.1
   which virtualbox >/dev/null
   if [ "$?" -ne "0" ] ; then
     echo "Virtualbox not found..Installing now"
 
     sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian '$CODENAME' contrib" >> /etc/apt/sources.list'
     wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
-    apt-get update && apt-get -y install virtualbox-4.3
+    apt-get update && apt-get -y install virtualbox-5.1
   else
     echo "Virtualbox found.. not installing"
   fi
@@ -45,9 +45,9 @@ install_vagrant() {
   which vagrant >/dev/null
   if [ "$?" -ne "0" ] ; then
     echo "Vagrant not found..Installing now"
-    wget https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_x86_64.deb
-    dpkg -i vagrant_1.7.4_x86_64.deb
-    rm vagrant_1.7.4_x86_64.deb
+    wget https://releases.hashicorp.com/vagrant/1.9.4/vagrant_1.9.4_x86_64.deb
+    dpkg -i vagrant_1.9.4_x86_64.deb
+    rm vagrant_1.9.4_x86_64.deb
     vagrant plugin install vagrant-hostsupdater
   else
     echo "Vagrant found.. not installing"
@@ -65,9 +65,9 @@ install_packer() {
       mkdir packer
     fi
     cd packer
-    wget https://releases.hashicorp.com/packer/0.8.2/packer_0.8.2_linux_amd64.zip
-    unzip -o packer_0.8.2_linux_amd64.zip
-    rm packer_0.8.2_linux_amd64.zip
+    wget https://releases.hashicorp.com/packer/1.0.0/packer_1.0.0_linux_amd64.zip
+    unzip -o packer_1.0.0_linux_amd64.zip
+    rm packer_1.0.0_linux_amd64.zip
     export PATH=$PATH:$HOME/packer/
   else
     echo "Packer found not installing"
