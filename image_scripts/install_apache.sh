@@ -14,10 +14,10 @@ main_apache(){
 
 install_apache() {
   apt-get -y update && \
-  apt-get -y install \
-  apache2 \
-  libapache2-mod-php5 \
-  libapache2-mod-auth-mysql
+  DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  apache2
+  #libapache2-mod-php7.0
+  #libapache2-mod-auth-mysql
 }
 
 configure_apache(){

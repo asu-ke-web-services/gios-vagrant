@@ -6,7 +6,7 @@ main_sass() {
 
 # sass depenencies
 insall_sass() {
-gem install sass scss-lint
+gem install sass scss_lint
 npm install -g grunt grunt-cli
 }
 
