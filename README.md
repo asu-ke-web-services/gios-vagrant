@@ -148,9 +148,9 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 # Building A Box
 
 1. In order to build the box, you will require:
-  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v~4.3
-  - [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.7
-  - [Packer](http://www.packer.io/downloads.html) - v~0.8
+  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - v~5.1
+  - [Vagrant](http://www.vagrantup.com/downloads.html) - v~1.9
+  - [Packer](http://www.packer.io/downloads.html) - v~1.0
 
   Follow steps as in [Setup Instructions](#setup-instructions) for installing `Vagrant` and `Virtualbox`.
 
