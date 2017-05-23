@@ -58,12 +58,12 @@
     {
       "type": "file",
       "source": "image_files/gios-vhosts.conf",
-      "destination": "/etc/apache2/sites-available"
+      "destination": "/home/vagrant/"
     },
     {
       "type": "file",
-      "source": "image_files/local.gios.asu.edu-selfsigned.*",
-      "destination": "/etc/apache2/ssl/"
+      "source": "image_files/gios-openssl.conf",
+      "destination": "/home/vagrant/"
     },
     {
       "type": "shell",
