@@ -5,10 +5,10 @@ Vagrant Box creation scripts
 
 This box comes with:
 
-* Ubuntu 14.04
+* Ubuntu 16.04
 * Apache 2.4
-* php5 (Extensions: php5-cli, php5-common, php5-curl, php5-dev, php5-gd, php5-imagick, php5-json, php5-mysql, php5-readline, php5-tidy, php-pear)
-* MySQL-5.5
+* php7.0
+* MySQL 5.7
 * Wordpress - latest
 * phpmyadmin - 4.0.1
 * nodejs
