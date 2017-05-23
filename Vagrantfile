@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8000
   config.vm.network "forwarded_port", guest: 443, host: 44300
   config.vm.network "forwarded_port", guest: 3306, host: 33060
-  config.vm.synced_folder "./working_dir/html", "/var/www/html", create: true, :group => "www-data", mount_options: ["dmode=775", "fmode=664"]
+  config.vm.synced_folder "./working_dir/html", "/var/www/html", create: true, owner: "vagrant", :group => "www-data"
   config.vm.synced_folder "./working_dir/log/apache2", "/var/log/apache2", create: true
   config.vm.provision "shell", inline: $script
   config.vm.provision "shell", path: "provision_scripts/before_provision.sh"
