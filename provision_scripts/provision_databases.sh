@@ -49,6 +49,7 @@ main(){
 }
 
 install_databases(){
+  echo "Begin: install_databases()"
   # parse DB_HOST for port or socket references
   local PARTS=(${DB_HOST//\:/ })
   local DB_HOSTNAME=${PARTS[0]};
@@ -100,16 +101,17 @@ install_databases(){
   mysql --user="$DB_USER" --password="$DB_PASS" $GIOSAPI_DB_NAME < ${DB_STAGING_DIR}/${GIOSAPI_DB_NAME}.sql
 
   # pre-process the wordpress db's
-  sed -i "s/wordpressGIOSMS/$GIOS_DB_NAME/g" ${DB_STAGING_DIR}/wordpressGIOSMS.sql
-  sed -i "s/sustainability.asu.edu/sustainability.local.gios.asu.edu/g" ${DB_STAGING_DIR}/wordpressGIOSMS.sql
+  sed -i "s/wordpressGIOSMS/$GIOS_DB_NAME/g" ${DB_STAGING_DIR}/wordpressGIOS.sql
+  sed -i "s/sustainability.asu.edu/sustainability.local.gios.asu.edu/g" ${DB_STAGING_DIR}/wordpressGIOS.sql
 
-  sed -i "s/wordpressMS/$SOS_DB_NAME/g" ${DB_STAGING_DIR}/wordpressMS.sql
-  sed -i "s/wp.prod.gios.asu.edu/wp.local.gios.asu.edu/g" ${DB_STAGING_DIR}/wordpressMS.sql
-  sed -i "s/schoolofsustainability.asu.edu/sos.wp.local.gios.asu.edu/g" ${DB_STAGING_DIR}/wordpressMS.sql
+  sed -i "s/wordpressMS/$SOS_DB_NAME/g" ${DB_STAGING_DIR}/wordpressSOS.sql
+  sed -i "s/wp_33_/wp_/g" ${DB_STAGING_DIR}/wordpressSOS.sql
+  #sed -i "s/wp.prod.gios.asu.edu/wp.local.gios.asu.edu/g" ${DB_STAGING_DIR}/wordpressSOS.sql
+  sed -i "s/schoolofsustainability.asu.edu/sos.local.gios.asu.edu/g" ${DB_STAGING_DIR}/wordpressSOS.sql
 
   # import wordpress dbs
-  mysql --user="$DB_USER" --password="$DB_PASS" $GIOS_DB_NAME < ${DB_STAGING_DIR}/wordpressGIOSMS.sql
-  mysql --user="$DB_USER" --password="$DB_PASS" $SOS_DB_NAME < ${DB_STAGING_DIR}/wordpressMS.sql
+  mysql --user="$DB_USER" --password="$DB_PASS" $GIOS_DB_NAME < ${DB_STAGING_DIR}/wordpressGIOS.sql
+  mysql --user="$DB_USER" --password="$DB_PASS" $SOS_DB_NAME < ${DB_STAGING_DIR}/wordpressSOS.sql
 }
 
 install_wp_cli() {
