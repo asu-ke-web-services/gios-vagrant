@@ -33,7 +33,7 @@ SOS_WP_SETUP_DIR=${WEB_APP_PATH}/${SOS_DB_NAME}
 SOS_WP_PLUGIN_DIR=${WEB_APP_PATH}/${SOS_DB_NAME}/wp-content/plugins
 SOS_WP_THEMES_DIR=${WEB_APP_PATH}/${SOS_DB_NAME}/wp-content/themes
 
-GIT_AUTHENTICATION_PREFIX="${GIT_USER_NAME}:${GIT_PASSWORD}@"
+GIT_AUTHENTICATION_PREFIX="${GIT_USER_NAME}:${GIT_TOKEN}@"
 
 INSTALL_GIOS_WP_PLUGINS=( 'wordpress-news-kiosk-plugin' 'gios2-wp' 'wp-front-end-editor' 'wordpress-newsletter-plugin')
 INSTALL_WP_PLUGINS=( cas-maestro.1.1.3.zip contact-form-7.4.7.zip disable-author-pages.0.11.zip disable-comments.zip ewww-image-optimizer.3.3.1.zip html-editor-syntax-highlighter.1.7.2.zip html-editor-syntax-highlighter.1.7.2.zip simple-custom-css.zip wordpress-seo.4.7.1.zip wp-slick-slider-and-image-carousel.zip )
