@@ -113,7 +113,7 @@
     "desktop": "false",
     "disk_size": "65535",
     "ftp_proxy": "{{env `ftp_proxy`}}",
-    "headless": "true",
+    "headless": "false",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
@@ -140,4 +140,3 @@
     "vmware_guest_os_type": "ubuntu-64"
   }
 }
-
