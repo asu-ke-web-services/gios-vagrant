@@ -173,11 +173,11 @@ Read more about vagrant commands on [Documentation](http://docs.vagrantup.com/v2
 ```
 UBUNTU:
 
-  `sudo bash install_vb_vagrant.sh`
+  sudo bash install_vb_vagrant.sh
 
 MAC:
 
-  `brew install packer`
+  brew install packer
 
 WINDOWS:
 
