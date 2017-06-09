@@ -40,46 +40,60 @@ The box contains phpmyadmin, which has the following username and password by de
     * [Git](https://desktop.github.com/)
 
 2. Install [Git](https://desktop.github.com/) and clone this repo:
- `git clone https://github.com/gios-asu/gios-vagrant.git`
-  or [dowload zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
+```
+  git clone https://github.com/gios-asu/gios-vagrant.git
+```
+  or [download zip](https://github.com/gios-asu/gios-vagrant/archive/master.zip) and extract the repo.
 
 3. Change your current working directory to `gios-vagrant`
+4. Install VirtualBox and Vagrant for your OS:
 
- ### Installing VirtualBox & Vagrant:
- #### Ubuntu:
-  `sudo bash install_vb_vagrant.sh`
+```
+UBUNTU:
+  - sudo bash install_vb_vagrant.sh
 
- #### Mac:
-  Install [homebrew](http://brew.sh/) using steps listed on their homepage. Once done run following commands:
-  * `brew cask install virtualbox`
-  * `brew cask install vagrant`
-  * `brew cask install vagrant-manager`
-  * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
+MAC:
+  * Install [homebrew](http://brew.sh/) using steps listed on their homepage. Once done, run following commands:
+    - brew cask install virtualbox
+    - brew cask install vagrant
+    - brew cask install vagrant-manager
 
- #### Windows:
+  * In the `gios-vagrant` directory, install vagrant-hostsupdater plugin with command:
+    - vagrant plugin install vagrant-hostsupdater
+
+WINDOWS:
   * Download and install the VirtualBox for Windows.
   * Download and install vagrant for Windows.
   * Install vagrant-hostsupdater plugin with command `vagrant plugin install vagrant-hostsupdater`
   * Download and install both PuTTY and PuTTYGen for windows from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
   * A visual example to install is [here](http://aryannava.com/2014/04/05/installing-vagrant-on-windows-7-and-8/).
+```
 
 4. Rename file `settings-default` located in `gios-vagrant` directory to `settings`.
 
 5. Open `settings` file and replace `GIT_USER_NAME` with your Git username and `GIT_TOKEN` with your [Git Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/).
 
-6. Run the following command in the `gios-vagrant` directory to work with this Vagrant Box:
+6. Run the following command in the `gios-vagrant` directory to launch this Vagrant Box:
 
-  `vagrant up`
+```
+  vagrant up
+```
+
+### NOTE: The first time you launch vagrant, the machine must be setup and provisioned, including initializing the databases and web applications used for development. This process takes quite some time, up to 30 minutes, in some cases, and the provisioning scripts will not provide any visual feedback until after they have completed their work. Be prepared to step away and allow the process to take the time it needs.
 
 7. You can see wordpress, mysql, logs, web-apps under `gios-vagrant/working_dir` directory.
 
 8. You can now access the guest machine using following urls:
-  * `local.gios.asu.edu/wordpress`
+  * `sustainability.local.gios.asu.edu`
+  * `sos.local.gios.asu.edu`
   * `local.gios.asu.edu/phpmyadmin`
   * `local.gios.asu.edu`
-9. If you are going to use git configure username and email id by logging into vagrant machine using `vagrant ssh`:
-  * `git config --global user.name "YOUR_NAME"`
-  * `git config --global user.email "YOUR_EMAIL"`
+9. If you are going to use git within the vagrant machine, configure username and email id by logging into vagrant machine using `vagrant ssh`:
+
+```
+  git config --global user.name "YOUR_NAME"
+  git config --global user.email "YOUR_EMAIL"
+```
 
 The box will have the following ports forwarded by default:
 
