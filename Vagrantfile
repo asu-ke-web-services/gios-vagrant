@@ -25,16 +25,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "provision_scripts/provision_wordpress.sh"
 
   config.vm.provision "shell", privileged: false, inline: <<-EOF
-    echo "Running third provisioning script (GIOS plugins):"
-  EOF
-  config.vm.provision "shell", path: "provision_scripts/provision_gios_plugins.sh"
-
-  config.vm.provision "shell", privileged: false, inline: <<-EOF
-    echo "Running fourth provisioning script (other plugins):"
-  EOF
-  config.vm.provision "shell", path: "provision_scripts/provision_wp_plugins.sh"
-
-  config.vm.provision "shell", privileged: false, inline: <<-EOF
     echo "Running final provisioning script:"
   EOF
   config.vm.provision "shell", path: "provision_scripts/provision_finalize.sh"
