@@ -14,22 +14,25 @@ PLUGIN_STAGING_DIR=${STAGING_DIR}/plugins
 
 GIOSAPI_DB_NAME=${7-gios2_production}
 
-GIOS_DB_NAME=${8-giosMS}
-GIOS_WP_SETUP_DIR=${WEB_APP_PATH}/${GIOS_DB_NAME}
-GIOS_WP_PLUGIN_DIR=${WEB_APP_PATH}/${GIOS_DB_NAME}/wp-content/plugins
-GIOS_WP_THEMES_DIR=${WEB_APP_PATH}/${GIOS_DB_NAME}/wp-content/themes
+GIOS_DB_NAME=${8-wordpressGIOSMS}
+GIOS_WEB_NAME=${9-sustainability.asu.edu}
+GIOS_WP_SETUP_DIR=${WEB_APP_PATH}/${GIOS_WEB_NAME}
+GIOS_WP_PLUGIN_DIR=${WEB_APP_PATH}/${GIOS_WEB_NAME}/wp-content/plugins
+GIOS_WP_THEMES_DIR=${WEB_APP_PATH}/${GIOS_WEB_NAME}/wp-content/themes
 
-SOS_DB_NAME=${9-sosMS}
-SOS_WP_SETUP_DIR=${WEB_APP_PATH}/${SOS_DB_NAME}
-SOS_WP_PLUGIN_DIR=${WEB_APP_PATH}/${SOS_DB_NAME}/wp-content/plugins
-SOS_WP_THEMES_DIR=${WEB_APP_PATH}/${SOS_DB_NAME}/wp-content/themes
+SOS_DB_NAME=${10-wordpressMS}
+SOS_WEB_NAME=${11-wordpressMS}
+SOS_WP_SETUP_DIR=${WEB_APP_PATH}/${SOS_WEB_NAME}
+SOS_WP_PLUGIN_DIR=${WEB_APP_PATH}/${SOS_WEB_NAME}/wp-content/plugins
+SOS_WP_THEMES_DIR=${WEB_APP_PATH}/${SOS_WEB_NAME}/wp-content/themes
 
 GIT_AUTHENTICATION_PREFIX="${GIT_USER_NAME}:${GIT_TOKEN}@"
 
 WEB_APPS=( 'gios2-php' )
 
 main(){
-  install_wp
+  #install_wp
+  unzip_wp_dirs
   install_web_apps
   configure_gios_api
 }
@@ -38,7 +41,7 @@ configure_dev_localsettings(){
   echo "Begin: configure_dev_localsettings()"
   BOOTSTRAP_DIR="${WEB_APP_PATH}/gios2-php"
   TEST_DEPARTMENT_DRIVE_PATH=$BOOTSTRAP_DIR/dept_drive
-  TEST_ATTACHMENT_PATH=$BOOTSTRAP_DIR/attachment_drive
+  TEST_ATTACHMENT_PATH=https://gios-attachments-storage.s3-us-west-2.amazonaws.com/store/
 
   local DB1_NAME=$1
   local DB2_NAME=$2
@@ -54,7 +57,6 @@ configure_dev_localsettings(){
   sed -ie "s/YOUR_WP_PASSWORD_HERE/$DB_PASS/g" localsettings.php
   sed -ie "s/YOUR_PATH_TO_THE_DEPARTMENT_DRIVE/$(echo $TEST_DEPARTMENT_DRIVE_PATH | sed -e 's/[]\/$*.^|[]/\\&/g')/g" localsettings.php
   sed -ie "s/YOUR_PATH_TO_THE_ATTACHMENTS_STORE/$(echo $TEST_ATTACHMENT_PATH | sed -e 's/[]\/$*.^|[]/\\&/g')/g" localsettings.php
-  sed -ie "s/'WORDPRESS_BLOG_ID', 33/'WORDPRESS_BLOG_ID', 2/g" localsettings.php
 }
 
 configure_gios_api(){
@@ -72,7 +74,7 @@ configure_gios_api(){
   mv 'localsettings.php' 'localsettings.test.php'
 
   # setup localsettings for regular dev work
-  configure_dev_localsettings gios2_production giosMS
+  configure_dev_localsettings gios2_production wordpressMS
   cp 'localsettings.php' 'localsettings.dev.php'
 
   cd "${WEB_APP_PATH}"
@@ -119,26 +121,36 @@ install_wp() {
     mv wordpress/* ./
     local EXTRA_PHP=$(cat <<'END_HEREDOC'
 
- // Enable WP_DEBUG mode
- define( 'WP_DEBUG', true );
+  // GIOS2-php path:
+  function appendToIncludePath($path)
+  {
+      ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $path . DIRECTORY_SEPARATOR);
+  }
+  appendToIncludePath( '/var/www/html/gios2-php' );
 
- // Enable Debug logging to the /wp-content/debug.log file
- define( 'WP_DEBUG_LOG', true );
+  define('WP_CACHE', false); //Added by WP-Cache Manager
+  define( 'WPCACHEHOME', '/var/www/html/giosMS/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
 
- // Disable on-page display of errors and warnings
- define( 'WP_DEBUG_DISPLAY', false );
- @ini_set( 'display_errors', 0 );
+  // Enable WP_DEBUG mode
+  define( 'WP_DEBUG', true );
 
- // Use dev versions of core JS and CSS files (only needed if you are modifying these core files)
- define( 'SCRIPT_DEBUG', true );
- define( 'WP_ALLOW_MULTISITE', false );
+  // Enable Debug logging to the /wp-content/debug.log file
+  define( 'WP_DEBUG_LOG', true );
 
- define('MULTISITE', false);
- define('SUBDOMAIN_INSTALL', false);
- define('DOMAIN_CURRENT_SITE', 'sustainability.local.gios.asu.edu');
- define('PATH_CURRENT_SITE', '/');
- define('SITE_ID_CURRENT_SITE', 1);
- define('BLOG_ID_CURRENT_SITE', 1);
+  // Disable on-page display of errors and warnings
+  define( 'WP_DEBUG_DISPLAY', false );
+  @ini_set( 'display_errors', 0 );
+
+  // Use dev versions of core JS and CSS files (only needed if you are modifying these core files)
+  define( 'SCRIPT_DEBUG', true );
+  define( 'WP_ALLOW_MULTISITE', false );
+
+  define('MULTISITE', false);
+  define('SUBDOMAIN_INSTALL', false);
+  define('DOMAIN_CURRENT_SITE', 'sustainability.local.gios.asu.edu');
+  define('PATH_CURRENT_SITE', '/');
+  define('SITE_ID_CURRENT_SITE', 1);
+  define('BLOG_ID_CURRENT_SITE', 1);
 
 END_HEREDOC
 )
@@ -173,27 +185,37 @@ END_HEREDOC
     mv wordpress/* ./
     local EXTRA_PHP=$(cat <<'END_HEREDOC'
 
- // Enable WP_DEBUG mode
- define( 'WP_DEBUG', true );
+  // GIOS2-php path:
+  function appendToIncludePath($path)
+  {
+      ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $path . DIRECTORY_SEPARATOR);
+  }
+  appendToIncludePath( '/var/www/html/gios2-php' );
 
- // Enable Debug logging to the /wp-content/debug.log file
- define( 'WP_DEBUG_LOG', true );
+  define('WP_CACHE', false); //Added by WP-Cache Manager
+  define( 'WPCACHEHOME', '/var/www/html/sosMS/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
 
- // Disable on-page display of errors and warnings
- define( 'WP_DEBUG_DISPLAY', false );
- @ini_set( 'display_errors', 0 );
+  // Enable WP_DEBUG mode
+  define( 'WP_DEBUG', true );
 
- // Use dev versions of core JS and CSS files (only needed if you are modifying these core files)
- define( 'SCRIPT_DEBUG', true );
- define( 'WP_ALLOW_MULTISITE', false );
+  // Enable Debug logging to the /wp-content/debug.log file
+  define( 'WP_DEBUG_LOG', true );
 
- define( 'MULTISITE', false );
- define( 'SUBDOMAIN_INSTALL', false );
- $base = '/';
- define( 'DOMAIN_CURRENT_SITE', 'sos.local.gios.asu.edu' );
- define( 'PATH_CURRENT_SITE', '/' );
- define( 'SITE_ID_CURRENT_SITE', 1 );
- define( 'BLOG_ID_CURRENT_SITE', 1 );
+  // Disable on-page display of errors and warnings
+  define( 'WP_DEBUG_DISPLAY', false );
+  @ini_set( 'display_errors', 0 );
+
+  // Use dev versions of core JS and CSS files (only needed if you are modifying these core files)
+  define( 'SCRIPT_DEBUG', true );
+  define( 'WP_ALLOW_MULTISITE', false );
+
+  define( 'MULTISITE', false );
+  define( 'SUBDOMAIN_INSTALL', false );
+  $base = '/';
+  define( 'DOMAIN_CURRENT_SITE', 'sos.local.gios.asu.edu' );
+  define( 'PATH_CURRENT_SITE', '/' );
+  define( 'SITE_ID_CURRENT_SITE', 1 );
+  define( 'BLOG_ID_CURRENT_SITE', 1 );
 
 END_HEREDOC
 )
@@ -230,6 +252,24 @@ setup_coding_standards(){
     composer install
     ./vendor/bin/phpcs -vvv -w --config-set installed_paths "../../../coding_standards/"
   fi
+}
+
+unzip_wp_dirs() {
+  echo "Begin: unzip_wp_dirs()"
+  # Extract tarballs with production versions of both multisites (this is yucky)
+  cd ${WEB_APP_PATH}
+  tar xzvf ${WEB_APP_PATH}/staging/webdir/sustainability.asu.edu.tar.gz
+  tar xzvf ${WEB_APP_PATH}/staging/webdir/wordpressMS.tar.gz
+
+  sed -i "s/define('WP_CACHE', true);/define('WP_CACHE', false);/g" ${GIOS_WP_SETUP_DIR}/wp-config.php
+  sed -i "s/define('DB_USER', 'wordpressGIOSMS');/define('DB_USER', 'root');/g" ${GIOS_WP_SETUP_DIR}/wp-config.php
+  sed -i "s/define('DB_PASSWORD', 'RC8yuk4PGOh7atzh');/define('DB_PASSWORD', 'root');/g" ${GIOS_WP_SETUP_DIR}/wp-config.php
+  sed -i "s/define('DB_HOST', '172.31.9.41');/define('DB_HOST', 'localhost');/g" ${GIOS_WP_SETUP_DIR}/wp-config.php
+
+  sed -i "s/define('WP_CACHE', true);/define('WP_CACHE', false);/g" ${SOS_WP_SETUP_DIR}/wp-config.php
+  sed -i "s/define('DB_USER', 'wordpressMS');/define('DB_USER', 'root');/g" ${SOS_WP_SETUP_DIR}/wp-config.php
+  sed -i "s/define('DB_PASSWORD', 'MXtHoTpDO3liYWwB');/define('DB_PASSWORD', 'root');/g" ${SOS_WP_SETUP_DIR}/wp-config.php
+  sed -i "s/define('DB_HOST', '172.31.9.41');/define('DB_HOST', 'localhost');/g" ${SOS_WP_SETUP_DIR}/wp-config.php
 }
 
 main
