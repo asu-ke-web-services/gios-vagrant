@@ -21,7 +21,7 @@ STAGING_DIR=${WEB_APP_PATH}/staging
 DB_STAGING_DIR=${STAGING_DIR}/dbs
 PLUGIN_STAGING_DIR=${STAGING_DIR}/plugins
 
-GIOSAPI_DB_NAME=${7-gios2_production}
+GIOSAPI_DB_NAME=${7-gios2_development}
 
 GIOS_DB_NAME=${8-wordpressGIOSMS}
 GIOS_WEB_NAME=${9-sustainability.asu.edu}
@@ -93,8 +93,11 @@ install_databases(){
     gunzip ${DB_STAGING_DIR}/$snapshot
   done
 
-  # import GIOS DB (no pre-processing needed)
-  mysql --user="$DB_USER" --password="$DB_PASS" $GIOSAPI_DB_NAME < ${DB_STAGING_DIR}/${GIOSAPI_DB_NAME}.sql
+  # preprocess GIOS DB (we need to rename the CREATE DATABASE result.)
+  sed -ie "s/gios2_production/gios2_development/g" ${DB_STAGING_DIR}/gios2_production.sql
+
+  # import GIOS DB
+  mysql --user="$DB_USER" --password="$DB_PASS" $GIOSAPI_DB_NAME < ${DB_STAGING_DIR}/gios2_production.sql
 
   # pre-process the wordpress databases
   # TODO

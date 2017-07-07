@@ -12,7 +12,7 @@ STAGING_DIR=${WEB_APP_PATH}/staging
 DB_STAGING_DIR=${STAGING_DIR}/dbs
 PLUGIN_STAGING_DIR=${STAGING_DIR}/plugins
 
-GIOSAPI_DB_NAME=${7-gios2_production}
+GIOSAPI_DB_NAME=${7-gios2_development}
 
 GIOS_DB_NAME=${8-wordpressGIOSMS}
 GIOS_WEB_NAME=${9-sustainability.asu.edu}
@@ -74,7 +74,7 @@ configure_gios_api(){
   mv 'localsettings.php' 'localsettings.test.php'
 
   # setup localsettings for regular dev work
-  configure_dev_localsettings gios2_production wordpressMS
+  configure_dev_localsettings gios2_development wordpressMS
   cp 'localsettings.php' 'localsettings.dev.php'
 
   cd "${WEB_APP_PATH}"
