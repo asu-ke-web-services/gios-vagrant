@@ -1,5 +1,5 @@
 #!/bin/bash
-RUBY_VERSION=${1-latest}
+RUBY_VERSION=${1-2.4.1}
 main_ruby() {
   version=''
 

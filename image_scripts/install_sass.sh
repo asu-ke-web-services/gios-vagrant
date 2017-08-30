@@ -1,12 +1,15 @@
 #!/bin/bash
+RUBY_VERSION=${1-2.4.1}
 set -e
 main_sass() {
-  insall_sass
+  install_sass
 }
 
 # sass depenencies
-insall_sass() {
-gem install sass scss-lint
+install_sass() {
+source /etc/profile.d/rvm.sh
+rvm use "$RUBY_VERSION"
+gem install sass scss_lint
 npm install -g grunt grunt-cli
 }
 

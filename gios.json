@@ -1,71 +1,142 @@
 {
-  "provisioners": [{
-    "type": "shell",
-    "scripts": [
-      "image_scripts/base.sh",
-      "image_scripts/virtualbox.sh",
-      "image_scripts/vagrant.sh",
-      "image_scripts/install_base_packages.sh",
-      "image_scripts/add_package_sources.sh",
-      "image_scripts/install_git.sh",
-      "image_scripts/install_apache.sh",
-      "image_scripts/install_php.sh",
-      "image_scripts/install_mysql.sh",
-      "image_scripts/install_phpmyadmin.sh",
-      "image_scripts/install_phpunit.sh",
-      "image_scripts/install_nodejs.sh",
-      "image_scripts/install_sass.sh",
-      "image_scripts/install_grunt.sh",
-      "image_scripts/install_composer.sh",
-      "image_scripts/install_rvm.sh",
-      "image_scripts/install_ruby.sh",
-      "image_scripts/cleanup.sh",
-      "image_scripts/zerodisk.sh"
-    ],
-    "override": {
-      "virtualbox-iso": {
-        "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-      }
+  "_comment": "Build with `packer build gios.json`",
+  "builders": [
+    {
+      "boot_command": [
+        "{{ user `boot_command_prefix` }}",
+        "/install/vmlinuz noapic ",
+        "initrd=/install/initrd.gz ",
+        "file=/floppy/{{ user `preseed` }} ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname={{ user `hostname` }} ",
+        "grub-installer/bootdev=/dev/sda<wait> ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "passwd/user-fullname={{ user `ssh_fullname` }} ",
+        "passwd/user-password={{ user `ssh_password` }} ",
+        "passwd/user-password-again={{ user `ssh_password` }} ",
+        "passwd/username={{ user `ssh_username` }} ",
+        "-- <enter>"
+      ],
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "http/{{ user `preseed` }}"
+      ],
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
+      "hard_drive_interface": "sata",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
+      "post_shutdown_delay": "1m",
+      "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--nictype1", "virtio" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}" ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "{{user `vm_name`}}"
     }
-  }],
-  "builders": [{
-    "type": "virtualbox-iso",
-    "boot_command": [
-      "<esc><esc><enter><wait>",
-      "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
-      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-      "hostname={{ .Name }} ",
-      "fb=false debconf/frontend=noninteractive ",
-      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-      "initrd=/install/initrd.gz -- <enter>"
-    ],
-    "boot_wait": "10s",
-    "disk_size": 40960,
-    "guest_os_type": "Ubuntu_64",
-    "http_directory": "http",
-    "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
-    "iso_checksum_type": "md5",
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-    "ssh_username": "vagrant",
-    "ssh_password": "vagrant",
-    "ssh_port": 22,
-    "ssh_wait_timeout": "10000s",
-    "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'",
-    "vboxmanage": [
-      ["modifyvm", "{{.Name}}", "--memory", "2048"],
-      ["modifyvm", "{{.Name}}", "--cpus", "2"]
-    ],
-    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-    "virtualbox_version_file": ".vbox_version"
-  }],
+  ],
   "post-processors": [
-    [{
+    {
+      "keep_input_artifact": false,
+      "output": "{{user `vm_name`}}.box",
       "type": "vagrant",
-      "override": {
-        "virtualbox": {
-          "output": "gios.box"
-        }
-      }
-    }]
-  ]
+      "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "image_files/gios-vhosts.conf",
+      "destination": "/home/vagrant/"
+    },
+    {
+      "type": "file",
+      "source": "image_files/gios-openssl.conf",
+      "destination": "/home/vagrant/"
+    },
+    {
+      "type": "shell",
+      "environment_vars": [
+        "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+        "DEBIAN_FRONTEND=noninteractive",
+        "DESKTOP={{user `desktop`}}",
+        "UPDATE={{user `update`}}",
+        "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
+        "SSH_USERNAME={{user `ssh_username`}}",
+        "SSH_PASSWORD={{user `ssh_password`}}",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "ftp_proxy={{user `ftp_proxy`}}",
+        "rsync_proxy={{user `rsync_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
+      ],
+      "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "image_scripts/update.sh",
+        "image_scripts/vagrant.sh",
+        "image_scripts/virtualbox.sh",
+        "image_scripts/motd.sh",
+        "image_scripts/install_base_packages.sh",
+        "image_scripts/add_package_sources.sh",
+        "image_scripts/install_git.sh",
+        "image_scripts/install_apache.sh",
+        "image_scripts/install_php.sh",
+        "image_scripts/install_mysql.sh",
+        "image_scripts/install_phpmyadmin.sh",
+        "image_scripts/install_phpunit.sh",
+        "image_scripts/install_nodejs.sh",
+        "image_scripts/install_grunt.sh",
+        "image_scripts/install_composer.sh",
+        "image_scripts/install_rvm.sh",
+        "image_scripts/install_ruby.sh",
+        "image_scripts/install_sass.sh",
+        "image_scripts/minimize.sh",
+        "image_scripts/cleanup.sh"
+      ]
+    }
+  ],
+  "variables": {
+    "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "cleanup_pause": "",
+    "cpus": "1",
+    "desktop": "false",
+    "disk_size": "65535",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "headless": "false",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "install_vagrant_key": "true",
+    "iso_checksum": "f3532991e031cae75bcf5e695afb844dd278fff9",
+    "iso_checksum_type": "sha1",
+    "iso_name": "ubuntu-16.04.3-server-amd64.iso",
+    "iso_path": "/Volumes/Storage/software/ubuntu",
+    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.3-server-amd64.iso",
+    "locale": "en_US",
+    "memory": "512",
+    "no_proxy": "{{env `no_proxy`}}",
+    "parallels_guest_os_type": "ubuntu",
+    "preseed" : "preseed.cfg",
+    "rsync_proxy": "{{env `rsync_proxy`}}",
+    "hostname": "vagrant",
+    "ssh_fullname": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "update": "false",
+    "vagrantfile_template": "",
+    "version": "0.3.1",
+    "virtualbox_guest_os_type": "Ubuntu_64",
+    "vm_name": "gios",
+    "vmware_guest_os_type": "ubuntu-64"
+  }
 }
