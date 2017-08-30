@@ -117,11 +117,11 @@
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
-    "iso_checksum": "f529548fa7468f2d8413b8427d8e383b830df5f6",
+    "iso_checksum": "f3532991e031cae75bcf5e695afb844dd278fff9",
     "iso_checksum_type": "sha1",
-    "iso_name": "ubuntu-16.04.2-server-amd64.iso",
+    "iso_name": "ubuntu-16.04.3-server-amd64.iso",
     "iso_path": "/Volumes/Storage/software/ubuntu",
-    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.2-server-amd64.iso",
+    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.3-server-amd64.iso",
     "locale": "en_US",
     "memory": "512",
     "no_proxy": "{{env `no_proxy`}}",
@@ -134,9 +134,9 @@
     "ssh_username": "vagrant",
     "update": "false",
     "vagrantfile_template": "",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "virtualbox_guest_os_type": "Ubuntu_64",
-    "vm_name": "gios1604",
+    "vm_name": "gios",
     "vmware_guest_os_type": "ubuntu-64"
   }
 }
