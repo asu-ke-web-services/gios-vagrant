@@ -258,8 +258,10 @@ unzip_wp_dirs() {
   echo "Begin: unzip_wp_dirs()"
   # Extract tarballs with production versions of both multisites (this is yucky)
   cd ${WEB_APP_PATH}
-  tar xzvf ${WEB_APP_PATH}/staging/webdir/sustainability.asu.edu.tar.gz
-  tar xzvf ${WEB_APP_PATH}/staging/webdir/wordpressMS.tar.gz
+  # tar xzvf ${WEB_APP_PATH}/staging/webdir/sustainability.asu.edu.tar.gz
+  # tar xzvf ${WEB_APP_PATH}/staging/webdir/wordpressMS.tar.gz
+  unzip ${WEB_APP_PATH}/staging/webdir/sustainability.asu.edu.zip
+  unzip ${WEB_APP_PATH}/staging/webdir/wordpressMS.zip
 
   sed -i "s/define('WP_CACHE', true);/define('WP_CACHE', false);/g" ${GIOS_WP_SETUP_DIR}/wp-config.php
   sed -i "s/define('DB_USER', 'wordpressGIOSMS');/define('DB_USER', 'root');/g" ${GIOS_WP_SETUP_DIR}/wp-config.php
