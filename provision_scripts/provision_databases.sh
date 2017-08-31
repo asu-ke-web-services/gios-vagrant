@@ -37,7 +37,7 @@ SOS_WP_THEMES_DIR=${WEB_APP_PATH}/${SOS_WEB_NAME}/wp-content/themes
 
 GIT_AUTHENTICATION_PREFIX="${GIT_USER_NAME}:${GIT_TOKEN}@"
 
-DATABASE_SNAPSHOTS=( 'gios2_production.sql.gz' 'wordpressGIOSMS.sql' 'wordpressMS.sql' )
+DATABASE_SNAPSHOTS=( 'gios2_production.sql.gz' 'wordpressGIOSMS.sql.gz' 'wordpressMS.sql.gz' )
 
 main(){
   install_wp_cli
